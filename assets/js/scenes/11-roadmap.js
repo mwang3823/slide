@@ -1,6 +1,6 @@
 /* 10 · Lộ trình — 6 ý
  * 1: đừng bắt đầu bằng AI toàn công ty · 2–5: lõi đi trên đường, dừng ở từng mốc · 6: 3 mức tự động hoá + nguyên tắc */
-E.def(9, (S) => {
+E.def(10, (S) => {
   const { t, $, $$ } = S, b = S.beat;
   const path = $('.road .rdraw');
   const MS = [0.14, 0.4, 0.66, 0.9];
@@ -31,9 +31,9 @@ E.def(9, (S) => {
 
   // lõi đi theo đường (giá trị toạ độ tính lại khi resize)
   samples.forEach(([u, f], j) => {
-    E.coreKeys.push([9 + u, { x: () => pt(f).x - E.vw / 2, y: () => pt(f).y - E.vh / 2, s: 0.28, o: 1 }, j === 0 ? 'io' : 'l']);
+    E.coreKeys.push([10 + u, { x: () => pt(f).x - E.vw / 2, y: () => pt(f).y - E.vh / 2, s: 0.28, o: 1 }, j === 0 ? 'io' : 'l']);
   });
-  E.coreKeys.push([9.95, { x: () => pt(1).x - E.vw / 2, y: () => pt(1).y - E.vh / 2, s: 0.28, o: 1 }]);
+  E.coreKeys.push([10.95, { x: () => pt(1).x - E.vw / 2, y: () => pt(1).y - E.vh / 2, s: 0.28, o: 1 }]);
   t('.road .rdraw', samples.map(([u, f], j) => [u, { dash: f }, j === 0 ? 'io' : 'l']).concat([[0.95, { dash: 1 }], [1.03, { dash: 0 }]]));
 
   t('.hA', [[-0.06, { o: 0, y: 30 }], [0.06, { o: 1, y: 0 }], [b(6, 0.3), { o: 1, y: 0 }], [b(6, 0.55), { o: 0, y: '-3vh' }]]);

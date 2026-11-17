@@ -13,6 +13,7 @@
   };
 
   function start() {
+    document.body.classList.add('night');
     E.boot();
 
     // chấm điều hướng
@@ -27,13 +28,31 @@
     });
 
     const hudN = $('#hud-n'), hudT = $('#hud-t'), notes = $('#notes'), notesBody = $('#notes-body');
+    // nội dung nói: toàn bộ lời nói của slide hiện tại
     let cur = [0, 1];
+    const notesH = $('#notes-h');
     const renderNotes = () => {
       const [i, k] = cur;
-      notesBody.innerHTML = '<ol>' + (window.NOTES[i] || []).map((x, j) => `<li class="${j + 1 === k ? 'on' : ''}">${x}</li>`).join('') + '</ol>';
+      const pz = E.scenes[i].pause;
+      const g = Math.max(0, pz.findIndex((p) => p >= k));
+      const from = g ? pz[g - 1] : 0, to = pz[g] || E.scenes[i].n;
+      notesH.textContent = `${String(i + 1).padStart(2, '0')} · ${E.scenes[i].title}`;
+      // hiện toàn bộ lời nói của slide, phần đang trình bày được đánh dấu
+      notesBody.innerHTML = (window.NOTES[i] || []).map((x, j) => `<p class="${j >= from && j < to ? 'on' : ''}">${x}</p>`).join('');
       const on = notesBody.querySelector('.on');
-      if (on) on.scrollIntoView({ block: 'nearest' });
+      if (on) notes.scrollTop = on.offsetTop - 48;
     };
+    const toggleNotes = () => { notes.hidden = !notes.hidden; ctrl.querySelector('[data-act=notes]').classList.toggle('on', !notes.hidden); if (!notes.hidden) renderNotes(); };
+    const toggleFull = () => {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else document.documentElement.requestFullscreen && document.documentElement.requestFullscreen().catch(() => {});
+    };
+    const ctrl = $('#ctrl');
+    ctrl.addEventListener('click', (e) => {
+      const b = e.target.closest('button'); if (!b) return;
+      ({ prev: () => E.step(-1), next: () => E.step(1), notes: toggleNotes, full: toggleFull })[b.dataset.act]();
+      b.blur();
+    });
     E.beatChange.push((i, k) => {
       cur = [i, k];
       hudN.textContent = `${String(i + 1).padStart(2, '0')}.${k}`;
@@ -46,7 +65,6 @@
       });
       hudN.textContent = String(i + 1).padStart(2, '0');
       hudT.textContent = E.scenes[i].title;
-      document.body.classList.toggle('night', i === E.N - 1);
     });
     E.kick();
 
@@ -54,7 +72,7 @@
 
     // click chuột: trái → bước kế tiếp, phải → bước trước (bỏ qua click trên nút / ghi chú)
     addEventListener('click', (e) => {
-      if (e.button !== 0 || e.target.closest('button, a, #notes, #dots')) return;
+      if (e.button !== 0 || e.target.closest('button, a, #notes, #dots, #ctrl')) return;
       if (getSelection && String(getSelection()).length) return;
       E.step(1);
     });
@@ -71,13 +89,8 @@
       else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(k)) { e.preventDefault(); E.step(-1); }
       else if (k === 'Home') { e.preventDefault(); E.goT(0); }
       else if (k === 'End') { e.preventDefault(); E.goT(E.N - 1 + 0.9); }
-      else if (k === 'f' || k === 'F') {
-        if (document.fullscreenElement) document.exitFullscreen();
-        else document.documentElement.requestFullscreen && document.documentElement.requestFullscreen().catch(() => {});
-      } else if (k === 'n' || k === 'N') {
-        notes.hidden = !notes.hidden;
-        if (!notes.hidden) renderNotes();
-      } else if (k === 'l' || k === 'L') {
+      else if (k === 'f' || k === 'F') toggleFull();
+      else if (k === 'n' || k === 'N') toggleNotes(); else if (k === 'l' || k === 'L') {
         E.setLite(!E.lite);
         E.toast(E.lite ? 'Chế độ nhẹ: BẬT' : 'Chế độ nhẹ: TẮT');
       } else if (/^[1-9]$/.test(k)) {

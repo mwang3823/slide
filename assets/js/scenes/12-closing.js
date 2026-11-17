@@ -1,7 +1,7 @@
 /* 11 · Tầm nhìn — 5 ý
  * 1: không thay thế người làm cấp nước · 2: nhiều trợ lý → hệ sinh thái nhân sự số
  * 3: nền tảng WAO (dữ liệu · API · MCP) · 4: ba câu kết · 5: AI không phải đích đến + cảm ơn */
-E.def(10, (S) => {
+E.def(11, (S) => {
   const { t, $$ } = S, b = S.beat;
 
   t('.head:not(.h3c)', [[-0.04, { o: 0, y: 30 }], [b(1, 0.25), { o: 1, y: 0 }], [b(3, 0), { o: 1, y: 0 }], [b(3, 0.25), { o: 0, y: '-3vh' }]]);

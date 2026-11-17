@@ -151,10 +151,12 @@
     secs.forEach((sec, i) => {
       const n = +sec.dataset.beats || 1;
       const seg = (BB - BA) / n;
-      const stops = [];
-      for (let k = 1; k <= n; k++) stops.push(BA + k * seg);
+      // điểm dừng = các ý có trong data-pause; giữa hai điểm dừng animation tự chạy liền một mạch
+      const pause = (sec.dataset.pause || '').split(',').map(Number).filter((k) => k >= 1 && k <= n);
+      const pk = pause.length ? pause : Array.from({ length: n }, (_, k) => k + 1);
+      const stops = pk.map((k) => BA + k * seg);
       if (i === 0) stops.unshift(0);
-      E.scenes.push({ i, sec, stage: stages[i], n, seg, len: 60 + n * 75, title: sec.dataset.title, stops, y: 0, h: 0, vis: null });
+      E.scenes.push({ i, sec, stage: stages[i], n, seg, pause: pk, len: 60 + n * 75, title: sec.dataset.title, stops, y: 0, h: 0, vis: null });
     });
     E.N = E.scenes.length;
     E.defs.forEach(([i, fn]) => {
@@ -291,7 +293,7 @@
     if (E.reduced) { scrollTo(0, y); return; }
     let start = from;
     if (dist > 1.6) start = E.tToY(E.yToT(y) + (y > from ? -0.55 : 0.55));
-    glide = { from: start, to: y, t0: performance.now(), dur: Math.min(2800, 1500 + Math.min(dist, 1.6) * 800) };
+    glide = { from: start, to: y, t0: performance.now(), dur: dist > 1.6 ? 2800 : Math.min(4200, 1300 + dist * 2800) };
     target = y;
     scrollTo(0, y);
     kick();
