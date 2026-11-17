@@ -2,7 +2,7 @@
  * 1: không phải "thêm một báo cáo" mà là "Hôm nay có gì cần chú ý?"
  * 2: Trợ lý Điều hành tổng hợp kinh doanh, KTKS, kỹ thuật, tài chính, nhiệm vụ → bất thường, việc chậm, xu hướng
  * 3: hỏi tiếp để đi sâu nguyên nhân, dữ liệu cơ sở, nguồn · 4: AI không quyết định thay · 5: rút ngắn từ nhiều báo cáo → điều cần quan tâm */
-E.def(8, (S) => {
+E.def(9, (S) => {
   const { t, $$ } = S, b = S.beat;
   const out = (sel, k = 0) => t(sel, [[0.945 + k * 0.006, { o: 1 }], [1.02 + k * 0.006, { o: 0 }]]);
 

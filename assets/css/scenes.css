@@ -93,7 +93,51 @@
 .evo-axis li.on { color: #fff; }
 .ax-fill { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--primary)); transform-origin: 0 50%; transform: scaleX(0); }
 
-/* ================= 04 PHÒNG BAN ================= */
+/* ================= 04 GÓC NHÌN NGÀNH NƯỚC (IWA) ================= */
+.iw-book { width: 16vw; height: 44vh; padding: 1.4em 1.3em; display: flex; flex-direction: column; gap: .7em; overflow: hidden;
+  border-left: .45em solid var(--primary); background: linear-gradient(165deg, #fff, var(--ice) 70%, #CFE6FB); }
+.iw-wp { align-self: flex-start; padding: .25em .8em; border-radius: 999px; background: var(--primary); color: #fff; font-size: var(--fs-s); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.iw-org { font-size: calc(var(--fs-b) * 1.12); font-weight: 800; color: var(--navy); line-height: 1.15; text-transform: uppercase; }
+.iw-rule { display: block; width: 3em; height: 4px; border-radius: 4px; background: var(--gold); transform-origin: 0 50%; }
+.iw-prog { font-size: var(--fs-b); font-weight: 700; color: var(--sky); letter-spacing: .04em; }
+.iw-title { font-size: calc(var(--fs-b) * 1.2); font-weight: 800; color: var(--primary); line-height: 1.2; }
+.iw-drop { position: absolute; right: -1.2em; bottom: -1.2em; width: 5.5em; height: 5.5em; display: grid; place-items: center; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff, #BFE0FF); color: var(--sky); }
+.iw-drop .i { width: 2.4em; height: 2.4em; stroke-width: 1.6; }
+.iw-src { font-size: var(--fs-s); font-style: italic; color: var(--on-dark-2); white-space: nowrap; }
+.iw-evo-h { font-size: var(--fs-b); font-weight: 700; color: var(--on-dark-2); white-space: nowrap; }
+.iw-evo-h em { color: var(--accent); }
+.iw-st { width: 10.5vw; padding: 1em .9em; display: flex; flex-direction: column; align-items: center; gap: .3em; text-align: center; transition: box-shadow .35s; }
+.iw-st h3 { margin-top: .3em; font-size: var(--fs-b); font-weight: 800; color: var(--navy); line-height: 1.2; }
+.iw-st > small { font-size: var(--fs-s); font-weight: 600; color: var(--muted); }
+.iw-st ul { width: 100%; margin-top: .4em; display: flex; flex-direction: column; gap: .3em; }
+.iw-st li { display: flex; align-items: center; justify-content: center; gap: .4em; padding: .35em .5em; border-radius: .6em; background: var(--ice); border: 1px solid var(--line); color: var(--navy-2); font-size: var(--fs-s); font-weight: 700; white-space: nowrap; }
+.iw-st li .i { width: 1.05em; height: 1.05em; color: var(--primary); }
+.iw-st.on { box-shadow: 0 0 0 4px rgba(146, 223, 255, .4), var(--shadow); }
+.iw-st.st3 { width: 13vw; border: 2px solid var(--gold); background: linear-gradient(160deg, #FFFDF6, var(--surface) 60%); }
+.iw-st.st3 li { justify-content: flex-start; }
+.iw-st.st3.on { box-shadow: 0 0 0 5px rgba(245, 183, 59, .3), var(--shadow); }
+.iw-perm { margin-top: .35em; display: flex; align-items: center; justify-content: center; gap: .4em; padding: .35em .8em; border-radius: .8em;
+  border: 1.5px dashed var(--gold-d); background: var(--gold-soft); color: var(--gold-d); font-size: var(--fs-s); font-weight: 700; line-height: 1.25; }
+.iw-perm .i { width: 1.05em; height: 1.05em; }
+.iw-arr { width: 2em; height: 2em; color: var(--accent); }
+.iw-ring .base { stroke-width: 2; }
+.iw-vh { padding: .5em 1.3em; border-radius: 999px; background: linear-gradient(90deg, var(--primary), var(--sky)); color: #fff; font-size: var(--fs-b); font-weight: 700; white-space: nowrap; box-shadow: 0 12px 24px -14px rgba(21, 88, 184, .8); }
+.iw-vh em { color: #FFE7A8; font-weight: 800; }
+.iw-v { display: inline-flex; align-items: center; gap: .45em; padding: .45em .95em; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow);
+  color: var(--navy); font-size: var(--fs-s); font-weight: 800; white-space: nowrap; transition: background .3s, color .3s, border-color .3s; }
+.iw-v .i { color: var(--primary); transition: color .3s; }
+.iw-v.on { background: var(--primary); color: #fff; border-color: var(--primary); }
+.iw-v.on .i { color: #fff; }
+.iw-shift { width: 40vw; display: flex; align-items: center; gap: .8em; white-space: nowrap; }
+.iw-shift b { padding: .45em 1.1em; border-radius: 999px; font-size: var(--fs-b); font-weight: 800; }
+.iw-shift .from { background: rgba(146, 223, 255, .12); border: 1px solid rgba(146, 223, 255, .5); color: var(--on-dark-2); }
+.iw-shift .to { background: linear-gradient(90deg, #FFE7A8, var(--gold)); color: var(--navy); box-shadow: 0 0 0 6px rgba(245, 183, 59, .14); }
+.iw-shift .ln { flex: 1; position: relative; height: 4px; border-radius: 4px; background: rgba(146, 223, 255, .2); }
+.iw-shift .ln i { position: absolute; inset: 0; border-radius: 4px; background: linear-gradient(90deg, var(--accent), var(--gold)); transform-origin: 0 50%; transform: scaleX(0); }
+.iw-shift .ah { width: 1.6em; height: 1.6em; margin-left: -.6em; color: var(--gold); }
+
+/* ================= 05 PHÒNG BAN ================= */
 .plat-label { left: 50%; top: calc(50% + 23vh); text-align: center; padding: .55em 1.4em; border-radius: 999px; background: linear-gradient(90deg, var(--primary), var(--sky)); color: #fff; white-space: nowrap; box-shadow: 0 12px 24px -14px rgba(21, 88, 184, .8); }
 .plat-label b { font-size: var(--fs-b); }
 .plat-label small { display: block; font-size: var(--fs-s); color: #D6ECFF; letter-spacing: .08em; text-transform: uppercase; }
@@ -105,7 +149,7 @@
 .dept small { display: block; color: var(--muted); font-size: var(--fs-s); }
 .dept.on { border-color: var(--sky); box-shadow: 0 0 0 3px rgba(46, 139, 234, .16), var(--shadow); }
 
-/* ================= 05 CHUỖI CÔNG VIỆC ================= */
+/* ================= 06 CHUỖI CÔNG VIỆC ================= */
 .core-cap { left: 50%; top: calc(50% + 21vh); width: 17vw; text-align: center; }
 .core-cap b { display: block; font-size: var(--fs-lead); color: #fff; }
 .core-cap small { color: var(--on-dark-2); font-size: var(--fs-s); }
@@ -148,7 +192,7 @@
 .flow li.gold > i { background: var(--gold); color: #fff; }
 .flow li.gold.on { box-shadow: 0 0 0 4px rgba(245, 183, 59, .25), 0 14px 28px -14px rgba(201, 133, 0, .7); }
 
-/* ================= 06 KTKS ================= */
+/* ================= 07 KTKS ================= */
 .docs { left: calc(50% - 31vw); top: calc(50% + 8vh); width: 0; height: 0; }
 .doc-c { position: absolute; left: -6.5vw; top: -8.5vh; width: 13vw; height: 17vh; padding: .8em; display: flex; flex-direction: column; gap: .45em;
   background: var(--surface); border: 1px solid var(--line); border-radius: .9em; box-shadow: var(--shadow); }
@@ -174,7 +218,7 @@
 .mini.rep { display: flex; gap: .25em; }
 .mini.rep i { width: .6em; height: .6em; border-radius: 50%; background: var(--gold); }
 
-/* ================= 07 KIẾN TRÚC ================= */
+/* ================= 08 KIẾN TRÚC ================= */
 .row { width: 44vw; display: flex; align-items: center; gap: .9em; padding: .75em 1.1em; }
 .row b { color: var(--navy); font-size: var(--fs-b); white-space: nowrap; }
 .row small { margin-left: auto; color: var(--muted); font-size: var(--fs-s); text-align: right; }
@@ -193,7 +237,7 @@
 .soi { border: 2px solid var(--gold); background: linear-gradient(160deg, #FFFDF6, var(--gold-soft)); }
 .plus { width: 1.9em; height: 1.9em; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(145deg, var(--sky), var(--primary)); color: #fff; font-weight: 800; font-size: var(--fs-lead); line-height: 1; }
 
-/* ================= 08 TIN TƯỞNG ================= */
+/* ================= 09 TIN TƯỞNG ================= */
 .guard { left: 50%; top: calc(50% + 4vh); width: 30vmin; aspect-ratio: 1; }
 .guard svg { width: 100%; height: 100%; overflow: visible; }
 .guard circle { fill: rgba(245, 183, 59, .06); stroke: var(--gold); stroke-width: 1.2; stroke-dasharray: 1; stroke-dashoffset: 1; }
@@ -213,7 +257,7 @@
 .badges li.gold { background: var(--gold-soft); border-color: #F5D58A; }
 .badges li.gold .i { color: var(--gold-d); }
 
-/* ================= 09 GIÁ TRỊ & KHÁC BIỆT ================= */
+/* ================= 10 GIÁ TRỊ & KHÁC BIỆT ================= */
 .val { width: 28vw; display: flex; align-items: center; gap: 1em; padding: 1em 1.2em; }
 .val > div { flex: 1; }
 .val b { display: block; color: var(--navy); font-size: var(--fs-b); line-height: 1.25; }
@@ -243,7 +287,7 @@
 .usr-l { left: calc(50% + 31vw); top: calc(50% + 31vh); font-size: var(--fs-s); color: var(--on-dark-2); white-space: nowrap; }
 .usr-l b { color: #fff; }
 
-/* ================= 10 LỘ TRÌNH ================= */
+/* ================= 11 LỘ TRÌNH ================= */
 .road .rbase { fill: none; stroke: rgba(146, 223, 255, .14); stroke-width: 12; stroke-linecap: round; }
 .road .rdraw { fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
 .mk { left: 0; top: 0; width: 1.4em; height: 1.4em; border-radius: 50%; background: var(--surface); border: 4px solid var(--sky); box-shadow: 0 0 0 7px rgba(46, 139, 234, .15); }
@@ -264,7 +308,7 @@
 .lvl.hi { background: #082246; border-color: var(--accent); }
 .lvl.hi b { color: #fff; } .lvl.hi small { color: #BCD3EF; } .lvl.hi .i { color: var(--accent); }
 
-/* ================= 11 TẦM NHÌN ================= */
+/* ================= 12 TẦM NHÌN ================= */
 .s-end .h { color: #fff; }
 .s-end .h em { color: var(--accent); }
 .eco { left: 0; top: 0; width: 100%; height: 100%; }
@@ -341,7 +385,7 @@
 .motto { display: inline-flex; align-items: center; gap: .5em; padding: .6em 1.2em; border-radius: 999px; background: var(--navy); color: #fff; font-weight: 800; font-size: var(--fs-b); }
 .motto .i { color: var(--gold); }
 
-/* ================= 07 HÀNH CHÍNH ================= */
+/* ================= 08 HÀNH CHÍNH ================= */
 .cap { width: 19.5vw; display: flex; align-items: center; gap: .8em; padding: .8em 1em; }
 .cap b { display: block; color: var(--navy); font-size: var(--fs-b); line-height: 1.2; }
 .cap small { color: var(--muted); font-size: var(--fs-s); }
@@ -366,7 +410,7 @@
 .nos span { display: inline-flex; align-items: center; gap: .45em; padding: .45em 1em; border-radius: 999px; border: 1px solid rgba(255, 138, 122, .55); background: rgba(255, 138, 122, .12); color: #FFD3CC; font-weight: 700; font-size: var(--fs-s); }
 .nos .i { color: #FF8A7A; width: 1.1em; height: 1.1em; }
 
-/* ================= 08 DỊCH VỤ KHÁCH HÀNG ================= */
+/* ================= 09 DỊCH VỤ KHÁCH HÀNG ================= */
 .cs-call { width: 17vw; padding: 1em 1.1em; display: flex; flex-direction: column; gap: .6em; }
 .cs-who { display: flex; align-items: center; gap: .7em; margin-bottom: .1em; }
 .cs-who b { color: var(--navy); font-size: var(--fs-b); line-height: 1.2; }
@@ -397,7 +441,7 @@
 .cs-row.ok .ico { background: #2BB673; color: #fff; }
 .cs-row.ok.on { box-shadow: 0 0 0 4px rgba(43, 182, 115, .22); }
 
-/* ================= 09 LÃNH ĐẠO ================= */
+/* ================= 10 LÃNH ĐẠO ================= */
 .ex-rpt { display: inline-flex; align-items: center; gap: .5em; white-space: nowrap; padding: .5em 1.2em; border-radius: 999px;
   background: rgba(255, 255, 255, .08); border: 1px solid rgba(146, 223, 255, .35); color: var(--on-dark-2); font-size: var(--fs-lead); font-weight: 600; }
 .ex-rpt .i { color: var(--accent); }
@@ -427,7 +471,7 @@
 .ex-dec .yes { display: inline-flex; align-items: center; gap: .5em; padding: .5em 1.1em; border-radius: 999px; background: var(--gold-soft); border: 2px solid var(--gold); color: var(--navy); font-weight: 800; font-size: var(--fs-b); box-shadow: 0 0 0 6px rgba(245, 183, 59, .15); }
 .ex-dec .yes .i { color: var(--gold-d); }
 
-/* ================= 10 KHÁC BIỆT WAO ================= */
+/* ================= 11 KHÁC BIỆT WAO ================= */
 .gen { width: 22vw; padding: 1em 1.2em; display: flex; flex-direction: column; gap: .7em; }
 .gen > small { font-size: var(--fs-s); font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
 .gchips { display: flex; flex-wrap: wrap; gap: .4em; }

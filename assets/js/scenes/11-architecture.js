@@ -1,7 +1,7 @@
 /* 07 · Kiến trúc — 3 ý
  * ý 1: hệ thống vẫn giữ nguyên (System of Record) · ý 2: thêm lớp Trợ lý số qua API/MCP (System of Intelligence)
  * ý 3: không sở hữu dữ liệu, không vượt quyền → tận dụng đầu tư, giảm rủi ro */
-E.def(9, (S) => {
+E.def(10, (S) => {
   const { t, $$ } = S, b = S.beat;
 
   t('.head', [[-0.06, { o: 0, y: 30 }], [0.06, { o: 1, y: 0 }], [0.945, { o: 1 }], [1.03, { o: 0 }]]);

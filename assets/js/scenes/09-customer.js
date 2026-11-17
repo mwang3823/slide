@@ -2,7 +2,7 @@
  * 1: khách hàng gọi hỏi vì sao hóa đơn tăng — nhân viên mới có thông tin danh bộ
  * 2: cần thêm lịch sử đồng hồ, tiêu thụ, hóa đơn, công nợ, phản ánh trước đây → gom về trợ lý số
  * 3: tổng hợp thành góc nhìn Customer 360 · 4: nhân viên tập trung hiểu vấn đề & phục vụ */
-E.def(7, (S) => {
+E.def(8, (S) => {
   const { t, $$ } = S, b = S.beat;
   const out = (sel, k = 0) => t(sel, [[0.945 + k * 0.006, { o: 1 }], [1.02 + k * 0.006, { o: 0 }]]);
 

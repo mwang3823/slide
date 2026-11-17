@@ -1,6 +1,6 @@
 /* 05 · Chuỗi công việc — 4 ý
  * ý 1: khác gì công cụ hỏi đáp? · ý 2: ví dụ nước yếu · ý 3: ví dụ hóa đơn tăng · ý 4: AI chuẩn bị, con người quyết định */
-E.def(4, (S) => {
+E.def(5, (S) => {
   const { t, $$ } = S, b = S.beat;
 
   t('.head', [[-0.06, { o: 0, y: 30 }], [0.06, { o: 1, y: 0 }], [0.945, { o: 1 }], [1.03, { o: 0 }]]);

@@ -16,6 +16,14 @@ window.NOTES = [
     'Agent không có nghĩa là AI được tự do làm mọi thứ. Nó chỉ hoạt động trong phạm vi dữ liệu, công cụ và quyền hạn doanh nghiệp cấp cho nó.',
   ],
   [
+    'Điều đáng chú ý là đây không chỉ là xu hướng của ngành công nghệ. International Water Association – IWA đã có riêng một white paper về GenAI và Agentic AI cho các đơn vị cấp nước trong chương trình Digital Water.',
+    'IWA mô tả một bước phát triển khá rõ: từ AI truyền thống để phát hiện và dự báo,',
+    'sang Generative AI để hiểu, giải thích và tổng hợp,',
+    'và tiếp theo là Agentic AI — có thể lập kế hoạch, sử dụng công cụ và tham gia vào quy trình trong phạm vi được cấp quyền.',
+    'Quan trọng hơn, IWA nhìn giá trị của AI không chỉ ở công nghệ, mà ở năng suất, nhân sự, ra quyết định, nguồn lực và lãnh đạo.',
+    'Vì vậy, có thể thấy AI trong ngành nước đang dịch chuyển từ phân tích dữ liệu sang hỗ trợ trực tiếp công việc và điều hành.',
+  ],
+  [
     'Thay vì xây một AI biết tất cả…',
     '…mỗi phòng ban có một Trợ lý số chuyên môn: Điều hành, Văn phòng, Khách hàng, Phân tích khiếu nại, Hiện trường, Phân tích tài chính, Nguồn lực, Hệ thống.',
     'Tất cả dùng chung một nền tảng, nhưng mỗi trợ lý chỉ thấy đúng dữ liệu, dùng đúng công cụ của vai trò mình. Dễ triển khai, dễ kiểm soát. Mục tiêu: đúng trợ lý cho đúng công việc.',

@@ -2,7 +2,7 @@
  * 1: không chỉ dữ liệu lớn — khối hành chính có giá trị sớm (4 năng lực)
  * 2: một công văn đến → đọc, trích yêu cầu & hạn, tìm tài liệu, dự thảo → người phụ trách duyệt
  * 3: sau cuộc họp → biên bản, kết luận, nhiệm vụ, nhắc việc · 4: AI không ký, không phát hành, không quyết định thay */
-E.def(6, (S) => {
+E.def(7, (S) => {
   const { t, $$ } = S, b = S.beat;
   const out = (sel, k = 0) => t(sel, [[0.945 + k * 0.006, { o: 1 }], [1.02 + k * 0.006, { o: 0 }]]);
 

@@ -1,7 +1,7 @@
 /* 06 · Case KTKS — 4 ý
  * ý 1: hiện quản lý theo từng hồ sơ · ý 2: người dùng có thể hỏi…
  * ý 3: Agent dùng công cụ: tra cứu, tìm lặp, quá hạn, xu hướng · ý 4: mở rộng nguồn → intelligence */
-E.def(5, (S) => {
+E.def(6, (S) => {
   const { t, $$ } = S, b = S.beat;
 
   t('.head', [[-0.06, { o: 0, y: 30 }], [0.06, { o: 1, y: 0 }], [0.945, { o: 1 }], [1.03, { o: 0 }]]);

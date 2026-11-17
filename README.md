@@ -1,6 +1,6 @@
 # Từ Chuyển đổi số đến Trợ lý số
 
-Bài thuyết trình web, animation gắn với scroll, gồm 14 cảnh nối liền nhau qua "lõi trợ lý số" (giọt nước + khối 3 lớp).
+Bài thuyết trình web, animation gắn với scroll, gồm 15 cảnh nối liền nhau qua "lõi trợ lý số" (giọt nước + khối 3 lớp).
 
 ## Chạy local
 ```bash
@@ -34,7 +34,7 @@ Push lên GitHub, vào **Settings → Pages**, chọn *Deploy from branch*, nhá
 
 ## Cấu trúc
 ```
-index.html                 markup 14 cảnh + sprite icon + lõi SVG
+index.html                 markup 15 cảnh + sprite icon + lõi SVG
 assets/css/fonts.css       Be Vietnam Pro (self-host, subset tiếng Việt)
 assets/css/base.css        token màu, component, UI chrome, chế độ nhẹ
 assets/css/scenes.css      bố cục từng cảnh

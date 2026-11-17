@@ -1,6 +1,6 @@
 /* 04 · Mỗi phòng ban — 3 ý
  * ý 1: thay vì một AI biết tất cả · ý 2: mỗi phòng ban một trợ lý · ý 3: chung nền tảng, mỗi trợ lý đúng phạm vi */
-E.def(3, (S) => {
+E.def(4, (S) => {
   const { t, $$ } = S, b = S.beat;
   const num = (el, v) => parseFloat(getComputedStyle(el).getPropertyValue(v)) || 0;
 
