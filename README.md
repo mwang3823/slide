@@ -1,0 +1,42 @@
+# Từ Chuyển đổi số đến Trợ lý số
+
+Bài thuyết trình web, animation gắn với scroll, gồm 11 cảnh nối liền nhau qua "lõi trợ lý số" (giọt nước + khối 3 lớp).
+
+## Chạy local
+```bash
+python3 -m http.server 5178   # mở http://localhost:5178
+```
+Mở thẳng `index.html` (file://) cũng chạy được: không có ES module, không cần build, font và ảnh đều lưu sẵn trong repo.
+
+## Trình chiếu
+| Phím | Tác dụng |
+|---|---|
+| `→` `↓` `Space` `PageDown` | Bước kế tiếp (dùng được với bút trình chiếu) |
+| Click chuột trái | Bước kế tiếp |
+| `←` `↑` `PageUp` · click chuột phải | Bước trước |
+| `1`–`9`, `Home`, `End` | Nhảy tới cảnh |
+| `F` | Toàn màn hình |
+| `N` | Ghi chú người nói (nội dung đầy đủ từ slide gốc) |
+| `L` | Bật/tắt chế độ nhẹ (máy yếu) · hoặc thêm `?lite=1` vào URL |
+
+## Deploy GitHub Pages
+Push lên GitHub, vào **Settings → Pages**, chọn *Deploy from branch*, nhánh `main`, thư mục `/ (root)`.
+
+## Cấu trúc
+```
+index.html                 markup 11 cảnh + sprite icon + lõi SVG
+assets/css/fonts.css       Be Vietnam Pro (self-host, subset tiếng Việt)
+assets/css/base.css        token màu, component, UI chrome, chế độ nhẹ
+assets/css/scenes.css      bố cục từng cảnh
+assets/js/engine.js        engine keyframe theo scroll (lerp, glide, lite, điều hướng)
+assets/js/core.js          quỹ đạo lõi dùng chung giữa các cảnh + nền
+assets/js/scenes/*.js      animation từng cảnh (thời gian cục bộ u = 0..1)
+assets/js/notes.js         ghi chú người nói
+tools/crop_assets.py       cắt ảnh từ pptx gốc (cần Pillow)
+```
+
+## Hiệu năng (máy không có GPU)
+- Chỉ animate `transform`, `opacity` (cộng `clip-path` và `stroke-dashoffset` cho phần tử nhỏ). Không dùng `backdrop-filter`, không dùng filter SVG.
+- Một vòng `requestAnimationFrame` duy nhất, chỉ chạy khi có thay đổi. Cảnh nằm ngoài vùng nhìn thì bị ẩn và không cập nhật.
+- Tự bật chế độ nhẹ khi FPS < 38 hoặc máy có ≤ 2 nhân CPU / ≤ 2GB RAM. Hỗ trợ `prefers-reduced-motion`.
+- Sửa CSS/JS thì tăng `?v=` trong `index.html` để trình duyệt không dùng bản cache.

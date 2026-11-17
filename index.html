@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Từ Chuyển đổi số đến Trợ lý số</title>
+<meta name="description" content="Mô hình trợ lý số (AI Agent) cho doanh nghiệp cấp nước – tham luận chuyên đề.">
+<meta name="theme-color" content="#D9E8F7">
+<link rel="preload" href="assets/fonts/bvp-vietnamese-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/bvp-latin-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/hero-drop.webp" as="image">
+<link rel="stylesheet" href="assets/css/fonts.css?v=9">
+<link rel="stylesheet" href="assets/css/base.css?v=9">
+<link rel="stylesheet" href="assets/css/scenes.css?v=9">
+</head>
+<body>
+
+<!-- ================= ICON SPRITE ================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M12 14l4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></symbol>
+  <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4M12 16h4M8 11h.01M8 16h.01"/></symbol>
+  <symbol id="i-clip-check" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 14l2 2 4-4"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v5h5M16 13H8M16 17H8M10 9H8"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
+  <symbol id="i-msg" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3.3 7l8.7 5 8.7-5M12 22V12"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M8 17v-4M13 17V9M18 17V5"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="M22 7l-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M22 3H2l8 9.46V19l4 2v-8.54z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 2l10 5-10 5L2 7z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></symbol>
+  <symbol id="i-cog" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect x="13" y="13" width="8" height="8" rx="2"/></symbol>
+  <symbol id="i-tower" viewBox="0 0 24 24"><path d="M7 3h10l1 6H6z"/><path d="M8.5 9L7 21M15.5 9L17 21M8 15h8"/></symbol>
+  <symbol id="i-waves" viewBox="0 0 24 24"><path d="M2 6c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></symbol>
+  <symbol id="i-store" viewBox="0 0 24 24"><path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35a2 2 0 0 1 1.26-1.86l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35z"/><path d="M6 22V12h12v10M6 16h12"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M12 2H2v10l9.29 9.29a1 1 0 0 0 1.41 0l8.59-8.59a1 1 0 0 0 0-1.41z"/><circle cx="7" cy="7" r="1.5"/></symbol>
+  <symbol id="i-repeat" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 1-15 6.7L3 16M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5M3 21v-5h5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-compare" viewBox="0 0 24 24"><path d="M8 3L4 7l4 4M4 7h16M16 21l4-4-4-4M20 17H4"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2z"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></symbol>
+  <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0l1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></symbol>
+  <symbol id="i-pipe" viewBox="0 0 24 24"><path d="M2 14h6v-4h8v4h6M2 10v8M22 10v8M12 10V5M9 5h6"/></symbol>
+  <symbol id="i-bot" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="3"/><path d="M12 8V4M9 4h6M8.5 14h.01M15.5 14h.01M9 17.5h6"/></symbol>
+</svg>
+
+<!-- ================= BACKGROUND ================= -->
+<div id="bg" aria-hidden="true">
+  <div class="bg-blob b1"></div>
+  <div class="bg-tint"></div>
+  <div class="bg-vig"></div>
+  <div class="bg-blob b2"></div>
+  <img class="bg-wave" src="assets/img/wave-right.webp" alt="">
+  <div class="bg-night"></div>
+</div>
+
+<!-- ================= STAGES ================= -->
+<main id="stages">
+
+  <!-- 01 HERO -->
+  <section class="stage s-hero" aria-label="Mở đầu">
+    <img class="hero-wave" src="assets/img/wave-left.webp" alt="">
+    <div class="hero-txt">
+      <div class="kick">Tham luận chuyên đề</div>
+      <h1 class="hero-h"><span class="ln"><span>Từ Chuyển đổi số</span></span><span class="ln"><span>đến <em>Trợ lý số</em></span></span></h1>
+      <p class="hero-sub">Mô hình trợ lý số cho doanh nghiệp cấp nước</p>
+      <ul class="hero-chips"><li><svg class="i"><use href="#i-map"/></svg>GIS</li><li><svg class="i"><use href="#i-users"/></svg>Khách hàng</li><li><svg class="i"><use href="#i-clipboard"/></svg>Ghi chỉ số</li><li><svg class="i"><use href="#i-file"/></svg>Hóa đơn</li><li><svg class="i"><use href="#i-wrench"/></svg>Kỹ thuật</li></ul>
+    </div>
+    <div class="hero-vis c">
+      <svg class="hero-net fx" viewBox="0 0 200 200" aria-hidden="true">
+        <path pathLength="1" d="M20 70 L60 40 L110 55 L160 30 L190 60"/>
+        <path pathLength="1" d="M10 130 L50 105 L95 120 L140 95 L185 120"/>
+        <path pathLength="1" d="M60 40 L50 105 M110 55 L95 120 M160 30 L140 95"/>
+        <g><circle cx="60" cy="40" r="2.4"/><circle cx="110" cy="55" r="2.4"/><circle cx="160" cy="30" r="2.4"/><circle cx="50" cy="105" r="2.4"/><circle cx="95" cy="120" r="2.4"/><circle cx="140" cy="95" r="2.4"/></g>
+      </svg>
+      <div class="orbit c">
+        <svg class="orbit-ring" viewBox="0 0 100 100" aria-hidden="true"><circle pathLength="1" cx="50" cy="50" r="48"/></svg>
+        <span class="ot c" style="left:4%;top:38%"><svg class="i"><use href="#i-pipe"/></svg></span>
+        <span class="ot c" style="left:16%;top:12%"><svg class="i"><use href="#i-drop"/></svg></span>
+        <span class="ot c" style="left:66%;top:4%"><svg class="i"><use href="#i-tower"/></svg></span>
+        <span class="ot c" style="left:92%;top:30%"><svg class="i"><use href="#i-waves"/></svg></span>
+        <span class="ot c" style="left:94%;top:62%"><svg class="i"><use href="#i-db"/></svg></span>
+      </div>
+      <img class="hero-drop" src="assets/img/hero-drop.webp" alt="Giọt nước chứa nhà máy cấp nước số" width="620" height="733">
+    </div>
+    <p class="next-q c">Có dữ liệu rồi — <em>bước tiếp theo là gì?</em></p>
+    <div class="scroll-cue"><span></span>Cuộn hoặc nhấn → để bắt đầu</div>
+  </section>
+
+  <!-- 02 THỰC TRẠNG -->
+  <section class="stage s-prob" aria-label="Thực trạng">
+    <div class="head"><div class="kick">Thực trạng</div><h2 class="h">Không thiếu hệ thống.<br>Nhưng <em>khai thác dữ liệu</em> còn tốn sức</h2></div>
+    <svg class="ov streams" aria-hidden="true">
+      <path class="base" pathLength="1" data-d="M46 44 C50 44 49 52 53 52"/><path class="base" pathLength="1" data-d="M46 59 C50 59 49 52 53 52"/><path class="base" pathLength="1" data-d="M46 74 C50 74 49 52 53 52"/>
+      <path class="pulse" pathLength="1" data-d="M46 44 C50 44 49 52 53 52"/><path class="pulse" pathLength="1" data-d="M46 59 C50 59 49 52 53 52"/><path class="pulse" pathLength="1" data-d="M46 74 C50 74 49 52 53 52"/>
+    </svg>
+    <div class="tiles">
+      <div class="tile c"><span class="ico"><svg class="i"><use href="#i-users"/></svg></span><b>Khách hàng</b></div><div class="tile c"><span class="ico"><svg class="i"><use href="#i-gauge"/></svg></span><b>Đồng hồ nước</b></div><div class="tile c"><span class="ico"><svg class="i"><use href="#i-clipboard"/></svg></span><b>Ghi chỉ số</b></div><div class="tile c"><span class="ico"><svg class="i"><use href="#i-drop"/></svg></span><b>Tiêu thụ</b></div><div class="tile c"><span class="ico"><svg class="i"><use href="#i-file"/></svg></span><b>Hóa đơn</b></div><div class="tile c"><span class="ico"><svg class="i"><use href="#i-wallet"/></svg></span><b>Công nợ</b></div><div class="tile c"><span class="ico"><svg class="i"><use href="#i-msg"/></svg></span><b>Khiếu nại</b></div><div class="tile c"><span class="ico"><svg class="i"><use href="#i-map"/></svg></span><b>GIS</b></div><div class="tile c"><span class="ico"><svg class="i"><use href="#i-pipe"/></svg></span><b>Kỹ thuật</b></div><div class="tile c"><span class="ico"><svg class="i"><use href="#i-alert"/></svg></span><b>Sự cố</b></div><div class="tile c"><span class="ico"><svg class="i"><use href="#i-box"/></svg></span><b>Vật tư</b></div><div class="tile c"><span class="ico"><svg class="i"><use href="#i-chart"/></svg></span><b>Tài chính</b></div><div class="tile c"><span class="ico"><svg class="i"><use href="#i-file"/></svg></span><b>Văn bản</b></div>
+    </div>
+    <div class="ask-mini"><span class="qi">?</span>“Hôm nay có gì cần chú ý?”</div>
+    <div class="pipe">
+      <div class="pipe-line"><i></i></div>
+      <div class="step"><span class="ico"><svg class="i"><use href="#i-monitor"/></svg></span><b>Mở hệ thống</b></div><div class="step"><span class="ico"><svg class="i"><use href="#i-search"/></svg></span><b>Tra cứu</b></div><div class="step"><span class="ico"><svg class="i"><use href="#i-filter"/></svg></span><b>Lọc</b></div><div class="step"><span class="ico"><svg class="i"><use href="#i-download"/></svg></span><b>Xuất Excel</b></div><div class="step"><span class="ico"><svg class="i"><use href="#i-layers"/></svg></span><b>Tổng hợp</b></div><div class="step"><span class="ico"><svg class="i"><use href="#i-chart"/></svg></span><b>Phân tích</b></div><div class="step"><span class="ico"><svg class="i"><use href="#i-pen"/></svg></span><b>Viết báo cáo</b></div>
+      <div class="runner"><svg class="i"><use href="#i-user"/></svg></div>
+    </div>
+    <div class="clock">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17"/><path class="tickm" d="M20 5v3M35 20h-3M20 35v-3M5 20h3"/><line class="hand" x1="20" y1="20" x2="20" y2="9"/><circle cx="20" cy="20" r="2" class="dot"/></svg>
+      <span><b>Thủ công</b>, lặp lại mỗi ngày</span>
+    </div>
+    <div class="ask c"><span class="q">?</span><b>Hôm nay có gì cần chú ý?</b></div>
+    <p class="tag">Khai thác <em>nhanh hơn</em> · <em>đúng ngữ cảnh</em> · <em>ít thao tác thủ công</em></p>
+  </section>
+
+  <!-- 03 TRỢ LÝ SỐ LÀ GÌ -->
+  <section class="stage s-agent" aria-label="Trợ lý số là gì">
+    <div class="head"><div class="kick">Khái niệm</div><h2 class="h">Trợ lý số là gì?</h2><p class="lead">Một <em>AI Agent</em> được giao một vai trò công việc cụ thể</p></div>
+    <div class="prompt"><span class="av"><svg class="i"><use href="#i-user"/></svg></span>
+      <div class="pstack">
+        <div class="pa"><small>Lãnh đạo hỏi</small><b>Hôm nay có gì cần chú ý?</b></div>
+        <div class="pb"><small>Giao một mục tiêu</small><b class="typed">Phân tích phản ánh nước yếu tháng này và cho tôi biết khu vực nào cần chú ý.</b></div>
+      </div>
+    </div>
+    <div class="evo">
+      <article class="lv lv1 card c">
+        <div class="lv-h"><span class="ico"><svg class="i"><use href="#i-msg"/></svg></span><div><h3>Chatbot</h3><small>Hỏi → Trả lời</small></div></div>
+        <div class="chat"><p class="me">“Nước yếu là gì?”</p><p class="bot"><i></i><i></i><i></i></p></div>
+      </article>
+      <article class="lv lv2 card c">
+        <div class="lv-h"><span class="ico"><svg class="i"><use href="#i-spark"/></svg></span><div><h3>AI Assistant</h3><small>Hỗ trợ một việc</small></div></div>
+        <div class="sum"><div class="doc"><i></i><i></i><i></i><i></i><i></i></div><svg class="i arr"><use href="#i-arrow"/></svg><div class="doc short"><i></i><i></i></div></div>
+        <p class="me">“Tóm tắt báo cáo này.”</p>
+      </article>
+      <article class="lv lv3 card c">
+        <div class="lv-h top"><h3>Trợ lý số / AI Agent</h3><small>Nhận <b>một mục tiêu</b> · tự đi nhiều bước</small></div>
+        <div class="agent-steps">
+          <div class="as-line"><i></i></div>
+          <span class="as">Tìm dữ liệu</span><span class="as">Lọc</span><span class="as">Đối chiếu</span><span class="as">Phân tích</span><span class="as">Tổng hợp</span><span class="as gold">Đề xuất</span>
+        </div>
+        <div class="result"><svg class="i"><use href="#i-pin"/></svg><div><b>Khu vực cần chú ý</b><small>Phản ánh nước yếu tăng · đề xuất kiểm tra áp lực</small></div></div>
+      </article>
+      <div class="fence c"><span><svg class="i"><use href="#i-db"/></svg>Dữ liệu được cấp</span><span><svg class="i"><use href="#i-wrench"/></svg>Công cụ được phép</span><span><svg class="i"><use href="#i-lock"/></svg>Quyền hạn rõ ràng</span></div>
+    </div>
+    <ol class="evo-axis"><li>Chatbot</li><li>AI Assistant</li><li>AI Agent</li><i class="ax-fill"></i></ol>
+    <p class="tag">Giao <em>mục tiêu</em> — chỉ trong phạm vi dữ liệu, công cụ, quyền hạn được cấp</p>
+  </section>
+
+  <!-- 04 MỖI PHÒNG BAN -->
+  <section class="stage s-dept" aria-label="Mỗi phòng ban một trợ lý số">
+    <div class="head center"><div class="kick">Mô hình</div><h2 class="h">Mỗi phòng ban — một <em>trợ lý số</em> chuyên môn</h2></div>
+    <div class="allai c"><span>Một AI biết tất cả?</span><i></i></div>
+    <svg class="ov links" aria-hidden="true">
+      <path class="base" pathLength="1" data-d="M43 50 C37 50 36 34 29.5 34"/><path class="base" pathLength="1" data-d="M43 53 C37 53 36 47 29.5 47"/><path class="base" pathLength="1" data-d="M43 57 C37 57 36 60 29.5 60"/><path class="base" pathLength="1" data-d="M43 60 C37 60 36 73 29.5 73"/><path class="base" pathLength="1" data-d="M57 50 C63 50 64 34 70.5 34"/><path class="base" pathLength="1" data-d="M57 53 C63 53 64 47 70.5 47"/><path class="base" pathLength="1" data-d="M57 57 C63 57 64 60 70.5 60"/><path class="base" pathLength="1" data-d="M57 60 C63 60 64 73 70.5 73"/>
+      <path class="pulse" pathLength="1" data-d="M43 50 C37 50 36 34 29.5 34"/><path class="pulse" pathLength="1" data-d="M43 53 C37 53 36 47 29.5 47"/><path class="pulse" pathLength="1" data-d="M43 57 C37 57 36 60 29.5 60"/><path class="pulse" pathLength="1" data-d="M43 60 C37 60 36 73 29.5 73"/><path class="pulse" pathLength="1" data-d="M57 50 C63 50 64 34 70.5 34"/><path class="pulse" pathLength="1" data-d="M57 53 C63 53 64 47 70.5 47"/><path class="pulse" pathLength="1" data-d="M57 57 C63 57 64 60 70.5 60"/><path class="pulse" pathLength="1" data-d="M57 60 C63 60 64 73 70.5 73"/>
+    </svg>
+    <div class="plat-label c"><b>Nền tảng Trợ lý số</b><small>AI Agent Platform</small></div>
+    <span class="pc c" style="--x:-14;--y:-9">Dữ liệu</span>
+    <span class="pc c" style="--x:14;--y:-9">Công cụ</span>
+    <span class="pc c" style="--x:-14;--y:13">Quy trình</span>
+    <span class="pc c" style="--x:14;--y:13">Phân quyền</span>
+    <div class="dept card c" style="--x:-33.5;--y:-16"><span class="ico"><svg class="i"><use href="#i-briefcase"/></svg></span><div><b>Ban Giám đốc</b><i>Trợ lý điều hành</i><small>Tổng hợp · Cảnh báo · Gợi ý</small></div></div><div class="dept card c" style="--x:-33.5;--y:-3"><span class="ico"><svg class="i"><use href="#i-file"/></svg></span><div><b>Hành chính</b><i>Trợ lý văn phòng</i><small>Soạn thảo · Biên bản · Quy trình</small></div></div><div class="dept card c" style="--x:-33.5;--y:10"><span class="ico"><svg class="i"><use href="#i-users"/></svg></span><div><b>Kinh doanh</b><i>Trợ lý khách hàng</i><small>Danh bộ · Tiêu thụ · Công nợ</small></div></div><div class="dept card c" style="--x:-33.5;--y:23"><span class="ico"><svg class="i"><use href="#i-search"/></svg></span><div><b>Kiểm tra kiểm soát</b><i>Trợ lý phân tích khiếu nại</i><small>Xu hướng · Lặp lại · Quá hạn</small></div></div><div class="dept card c" style="--x:33.5;--y:-16"><span class="ico"><svg class="i"><use href="#i-wrench"/></svg></span><div><b>Kỹ thuật</b><i>Trợ lý hiện trường</i><small>Hồ sơ · Công tác · Sự cố</small></div></div><div class="dept card c" style="--x:33.5;--y:-3"><span class="ico"><svg class="i"><use href="#i-chart"/></svg></span><div><b>Tài chính</b><i>Trợ lý phân tích tài chính</i><small>Báo cáo · Biến động · Tổng hợp</small></div></div><div class="dept card c gold" style="--x:33.5;--y:10"><span class="ico"><svg class="i"><use href="#i-store"/></svg></span><div><b>Vật tư – Kế hoạch</b><i>Trợ lý nguồn lực</i><small>Nhu cầu · Tiến độ · Theo dõi</small></div></div><div class="dept card c" style="--x:33.5;--y:23"><span class="ico"><svg class="i"><use href="#i-monitor"/></svg></span><div><b>Công nghệ thông tin</b><i>Trợ lý hệ thống</i><small>Giám sát · Tri thức · Hỗ trợ</small></div></div>
+    <p class="tag">Mỗi trợ lý đúng dữ liệu, đúng công cụ — <em>đúng trợ lý cho đúng việc</em></p>
+  </section>
+
+  <!-- 05 CHUỖI CÔNG VIỆC -->
+  <section class="stage s-chain" aria-label="Chuỗi công việc">
+    <div class="head"><div class="kick">Cách làm việc</div><h2 class="h">Một câu hỏi → <em>cả chuỗi công việc</em></h2></div>
+    <svg class="ov wires" aria-hidden="true">
+      <path class="base" pathLength="1" data-d="M39 56 C42 56 42 54 45 54"/>
+      <path class="base" pathLength="1" data-d="M55 54 C58 54 58 56 61 56"/>
+      <path class="pulse pa" pathLength="1" data-d="M39 56 C42 56 42 54 45 54"/>
+      <path class="pulse pb" pathLength="1" data-d="M61 56 C58 56 58 54 55 54"/>
+    </svg>
+    <div class="core-cap c"><b>Trợ lý số</b><small>Tìm · Đối chiếu · Phân tích · Chuẩn bị</small></div>
+    <article class="case caseA card c" style="--x:-29;--y:6">
+      <header class="q"><span class="qi">?</span><p class="typed">Khu vực này đang có chuyện gì?</p></header>
+      <div class="viz">
+        <svg class="minimap" viewBox="0 0 120 60" aria-hidden="true">
+          <path d="M4 10 L40 4 L58 18 L50 40 L16 46 Z M58 18 L96 8 L116 30 L90 52 L50 40 Z" />
+          <g class="pinA"><circle cx="30" cy="22" r="9"/><circle cx="30" cy="22" r="3.2" class="in"/></g>
+          <g class="pinA"><circle cx="48" cy="30" r="9"/><circle cx="48" cy="30" r="3.2" class="in"/></g>
+          <g class="pinA"><circle cx="38" cy="38" r="9"/><circle cx="38" cy="38" r="3.2" class="in"/></g>
+        </svg>
+        <span class="viz-l">Sáng nay nhiều khách hàng<b>phản ánh nước yếu</b></span>
+      </div>
+      <div class="sec s1"><span class="sec-l">Trợ lý số tự đi qua</span><div class="src"><span class="sr"><svg class="i"><use href="#i-headset"/></svg><em>KTKS / CSKH</em><svg class="i ok"><use href="#i-check"/></svg></span><span class="sr"><svg class="i"><use href="#i-map"/></svg><em>GIS</em><svg class="i ok"><use href="#i-check"/></svg></span><span class="sr"><svg class="i"><use href="#i-pulse"/></svg><em>Dữ liệu vận hành</em><svg class="i ok"><use href="#i-check"/></svg></span><span class="sr"><svg class="i"><use href="#i-gauge"/></svg><em>Áp lực · lưu lượng</em><svg class="i ok"><use href="#i-check"/></svg></span><span class="sr"><svg class="i"><use href="#i-alert"/></svg><em>Sự cố · công tác</em><svg class="i ok"><use href="#i-check"/></svg></span><span class="sr"><svg class="i"><use href="#i-users"/></svg><em>Danh bộ</em><svg class="i ok"><use href="#i-check"/></svg></span></div></div>
+      <div class="sec s2"><span class="sec-l">Kết quả chuẩn bị sẵn</span><ol class="flow"><li class=""><i>1</i><div><b>Đề xuất kiểm tra</b><small>hiện trường</small></div></li><li class="gold"><i>2</i><div><b>Người phụ trách duyệt</b><small>con người quyết định</small></div></li><li class=""><i>3</i><div><b>Tạo work order</b><small>sau khi duyệt</small></div></li></ol></div>
+    </article>
+    <article class="case caseB card c" style="--x:29;--y:6">
+      <header class="q"><span class="qi">?</span><p class="typed">Vì sao hóa đơn tháng này tăng bất thường?</p></header>
+      <div class="viz">
+        <svg class="meter" viewBox="0 0 120 60" aria-hidden="true">
+          <path class="arc" d="M14 52 A40 40 0 0 1 94 52"/>
+          <path class="arc hot" pathLength="1" d="M74 22 A40 40 0 0 1 94 52"/>
+          <line class="needle" x1="54" y1="52" x2="54" y2="20"/>
+          <circle cx="54" cy="52" r="4"/>
+          <g class="bars"><rect x="100" y="40" width="5" height="12"/><rect x="107" y="32" width="5" height="20"/><rect x="114" y="18" width="5" height="34" class="up"/></g>
+        </svg>
+        <span class="viz-l">Hóa đơn tháng này<b>tăng bất thường</b></span>
+      </div>
+      <div class="sec s1"><span class="sec-l">Trợ lý số tự đi qua</span><div class="src"><span class="sr"><svg class="i"><use href="#i-users"/></svg><em>Danh bộ</em><svg class="i ok"><use href="#i-check"/></svg></span><span class="sr"><svg class="i"><use href="#i-clipboard"/></svg><em>Chỉ số · ảnh ĐH</em><svg class="i ok"><use href="#i-check"/></svg></span><span class="sr"><svg class="i"><use href="#i-drop"/></svg><em>Lịch sử tiêu thụ</em><svg class="i ok"><use href="#i-check"/></svg></span><span class="sr"><svg class="i"><use href="#i-file"/></svg><em>Hóa đơn</em><svg class="i ok"><use href="#i-check"/></svg></span><span class="sr"><svg class="i"><use href="#i-repeat"/></svg><em>Lịch sử thay ĐH</em><svg class="i ok"><use href="#i-check"/></svg></span><span class="sr"><svg class="i"><use href="#i-msg"/></svg><em>Khiếu nại trước</em><svg class="i ok"><use href="#i-check"/></svg></span></div></div>
+      <div class="sec s2"><span class="sec-l">Kết quả chuẩn bị sẵn</span><ol class="flow"><li class=""><i>1</i><div><b>Tổng hợp bất thường</b><small>đủ bối cảnh</small></div></li><li class=""><i>2</i><div><b>Dự thảo phản hồi</b><small>hoặc đề xuất kiểm tra</small></div></li><li class="gold"><i>3</i><div><b>Nhân viên duyệt</b><small>con người quyết định</small></div></li></ol></div>
+    </article>
+    <p class="tag">AI <em>chuẩn bị công việc</em> — con người <em>kiểm tra và quyết định</em></p>
+  </section>
+
+  <!-- 06 CASE KTKS -->
+  <section class="stage s-ktks" aria-label="Case Trợ lý số KTKS">
+    <div class="head"><div class="kick">Case đang thử nghiệm</div><h2 class="h">Trợ lý số <em>KTKS</em></h2><p class="lead">Complaint Intelligence Agent</p></div>
+    <div class="docs"><div class="doc-c"><span class="dh"><svg class="i"><use href="#i-drop"/></svg></span><i></i><i></i><i></i></div><div class="doc-c"><span class="dh"><svg class="i"><use href="#i-drop"/></svg></span><i></i><i></i><i></i></div><div class="doc-c"><span class="dh"><svg class="i"><use href="#i-drop"/></svg></span><i></i><i></i><i></i></div><div class="doc-c"><span class="dh"><svg class="i"><use href="#i-drop"/></svg></span><i></i><i></i><i></i></div><div class="doc-c"><span class="dh"><svg class="i"><use href="#i-drop"/></svg></span><i></i><i></i><i></i></div><div class="doc-c"><span class="dh"><svg class="i"><use href="#i-drop"/></svg></span><i></i><i></i><i></i></div><div class="doc-c"><span class="dh"><svg class="i"><use href="#i-drop"/></svg></span><i></i><i></i><i></i></div><div class="doc-c"><span class="dh"><svg class="i"><use href="#i-drop"/></svg></span><i></i><i></i><i></i></div><div class="doc-c"><span class="dh"><svg class="i"><use href="#i-drop"/></svg></span><i></i><i></i><i></i></div><span class="docs-l">Hồ sơ khiếu nại</span></div>
+    <div class="rec card c"><b><svg class="i"><use href="#i-msg"/></svg>Một hồ sơ khiếu nại</b><ul><li><svg class="i"><use href="#i-user"/></svg>Khách hàng</li><li><svg class="i"><use href="#i-file"/></svg>Nội dung phản ánh</li><li><svg class="i"><use href="#i-tag"/></svg>Loại khiếu nại</li><li><svg class="i"><use href="#i-check"/></svg>Trạng thái</li><li><svg class="i"><use href="#i-user"/></svg>Người xử lý</li><li><svg class="i"><use href="#i-clock"/></svg>Thời gian</li><li><svg class="i"><use href="#i-clip-check"/></svg>Kết quả</li></ul></div>
+    <div class="ring c"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="49"/><circle class="seg" pathLength="1" cx="50" cy="50" r="49"/></svg></div>
+    <span class="sk c" style="--px:0;--py:-28"><svg class="i"><use href="#i-search"/></svg>Tra cứu</span><span class="sk c" style="--px:21;--py:-19.8"><svg class="i"><use href="#i-file"/></svg>Tóm tắt</span><span class="sk c" style="--px:28;--py:0"><svg class="i"><use href="#i-compare"/></svg>So sánh</span><span class="sk c" style="--px:21;--py:19.8"><svg class="i"><use href="#i-clock"/></svg>Quá hạn</span><span class="sk c" style="--px:0;--py:28"><svg class="i"><use href="#i-pen"/></svg>Tạo báo cáo</span><span class="sk c" style="--px:-21;--py:19.8"><svg class="i"><use href="#i-trend"/></svg>Xu hướng</span><span class="sk c" style="--px:-28;--py:0"><svg class="i"><use href="#i-repeat"/></svg>Phát hiện lặp</span><span class="sk c" style="--px:-21;--py:-19.8"><svg class="i"><use href="#i-tag"/></svg>Phân loại</span>
+    <div class="ins card c" style="--x:33.5;--y:-15"><span class="qi">?</span><b>Tháng này có vấn đề gì cần chú ý?</b><span class="ans"><svg class="i"><use href="#i-alert"/></svg></span></div>
+    <div class="ins card c" style="--x:33.5;--y:-2"><span class="qi">?</span><b>Khách hàng nào phản ánh lặp lại?</b><span class="mini rep ans"><i></i><i></i><i></i></span></div>
+    <div class="ins card c" style="--x:33.5;--y:11"><span class="qi">?</span><b>Loại khiếu nại nào đang tăng?</b><svg class="spark ans" viewBox="0 0 60 20" aria-hidden="true"><path pathLength="1" d="M2 17 L12 14 L22 15 L32 10 L42 11 L52 4 L58 3"/></svg></div>
+    <div class="ins card c" style="--x:33.5;--y:24"><span class="qi">?</span><b>Hồ sơ nào đang quá hạn?</b><span class="ans"><svg class="i warn"><use href="#i-clock"/></svg></span></div>
+    <div class="srcbar c">
+      <span><svg class="i"><use href="#i-msg"/></svg>KTKS</span><span><svg class="i"><use href="#i-users"/></svg>Danh bộ</span><span><svg class="i"><use href="#i-drop"/></svg>Tiêu thụ</span><span><svg class="i"><use href="#i-map"/></svg>GIS</span><span><svg class="i"><use href="#i-alert"/></svg>Sự cố</span>
+      <svg class="sb-line" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0 2 L100 2"/></svg>
+      <b class="ci"><svg class="i"><use href="#i-spark"/></svg>Complaint Intelligence</b>
+    </div>
+  </section>
+
+  <!-- 07 KIẾN TRÚC -->
+  <section class="stage s-arch" aria-label="Kiến trúc">
+    <div class="head"><div class="kick">Kiến trúc</div><h2 class="h">Không thay thế — thêm <em>lớp trí tuệ</em></h2></div>
+    <svg class="ov conns" aria-hidden="true">
+      <path class="base" pathLength="1" data-d="M48 37 L48 40.5"/>
+      <path class="base" pathLength="1" data-d="M48 51 L48 54.5"/>
+      <path class="base" pathLength="1" data-d="M48 65 L48 68"/>
+      <path class="pulse" pathLength="1" data-d="M48 68 L48 65"/>
+      <path class="pulse" pathLength="1" data-d="M48 54.5 L48 51"/>
+      <path class="pulse" pathLength="1" data-d="M48 40.5 L48 37"/>
+      <path class="base core-l" pathLength="1" data-d="M22 46 L26 46"/>
+    </svg>
+    <div class="row r-human card c" style="--x:-2;--y:-18"><span class="ico"><svg class="i"><use href="#i-user"/></svg></span><b>Con người</b><small>Hỏi · Kiểm tra · Quyết định</small></div>
+    <div class="row r-agent card c" style="--x:-2;--y:-4"><b>Trợ lý số / AI Agent</b><small>Hiểu yêu cầu · Phân tích · Điều phối công cụ</small></div>
+    <div class="row r-mcp card c" style="--x:-2;--y:10"><span class="ico"><svg class="i"><use href="#i-link"/></svg></span><b>MCP / API</b><small>Kết nối dữ liệu &amp; chức năng có kiểm soát</small></div>
+    <div class="row r-sys card c" style="--x:-2;--y:25">
+      <b>Hệ thống nghiệp vụ hiện có</b>
+      <div class="sysg">
+        <span><svg class="i"><use href="#i-users"/></svg>Danh bộ</span><span><svg class="i"><use href="#i-msg"/></svg>KTKS</span><span><svg class="i"><use href="#i-map"/></svg>GIS</span><span><svg class="i"><use href="#i-clipboard"/></svg>Ghi chỉ số</span><span><svg class="i"><use href="#i-file"/></svg>Billing</span><span><svg class="i"><use href="#i-wrench"/></svg>Kỹ thuật</span><span><svg class="i"><use href="#i-db"/></svg>Tài chính</span><span><svg class="i"><use href="#i-pulse"/></svg>NOC</span>
+      </div>
+    </div>
+    <span class="lock c" style="--x:1.6;--y:-11.2"><svg class="i"><use href="#i-lock"/></svg></span>
+    <span class="lock c" style="--x:1.6;--y:2.8"><svg class="i"><use href="#i-lock"/></svg></span>
+    <span class="lock c" style="--x:1.6;--y:16.5"><svg class="i"><use href="#i-lock"/></svg></span>
+    <div class="sor card c" style="--x:34;--y:-8"><span class="ico"><svg class="i"><use href="#i-db"/></svg></span><b>System of Record</b><small>Danh bộ vẫn là Danh bộ · dữ liệu chính thức</small></div>
+    <span class="plus c" style="--x:34;--y:6">+</span>
+    <div class="soi card gold c" style="--x:34;--y:19"><span class="ico"><svg class="i"><use href="#i-spark"/></svg></span><b>System of Intelligence</b><small>Trợ lý số · hiểu yêu cầu · gọi đúng công cụ</small></div>
+    <p class="tag">Không sở hữu dữ liệu · <em>không vượt quyền</em> — tận dụng đầu tư sẵn có</p>
+  </section>
+
+  <!-- 08 TIN TƯỞNG -->
+  <section class="stage s-trust" aria-label="Tin tưởng trợ lý số">
+    <div class="head"><div class="kick">Kiểm soát</div><h2 class="h">Không phải “AI thông minh đến đâu” — mà là <em>làm sao biết nó đúng?</em></h2></div>
+    <div class="head head2"><div class="kick">Nguyên tắc</div><h2 class="h">Không chỉ “nghe có vẻ đúng” — <em>phải kiểm chứng được</em></h2></div>
+    <svg class="ov tlinks" aria-hidden="true">
+      <path class="base" pathLength="1" data-d="M44 50 C38 50 40 40 36 40"/>
+      <path class="base" pathLength="1" data-d="M56 50 C62 50 60 40 64 40"/>
+      <path class="base" pathLength="1" data-d="M44 58 C38 58 40 68 36 68"/>
+      <path class="base" pathLength="1" data-d="M56 58 C62 58 60 68 64 68"/>
+    </svg>
+    <div class="guard c"><svg viewBox="0 0 100 100" aria-hidden="true"><circle pathLength="1" cx="50" cy="50" r="48"/></svg></div>
+    <div class="pil card c" style="--x:-25;--y:-10"><em class="n">01</em><b>Đúng dữ liệu</b><small>Hồ sơ, trạng thái, ngày tháng khớp hệ thống nguồn</small><span class="pv"><svg class="i"><use href="#i-db"/></svg><svg class="i ar"><use href="#i-arrow"/></svg><svg class="i"><use href="#i-layers"/></svg></span><svg class="ck" viewBox="0 0 24 24"><circle pathLength="1" cx="12" cy="12" r="10"/><path pathLength="1" d="M7.5 12.5l3 3 6-6"/></svg></div>
+    <div class="pil card c" style="--x:25;--y:-10"><em class="n">02</em><b>Đúng số liệu</b><small>Tổng · đếm · tỷ lệ do Backend/MCP tính, không để AI tự đếm</small><span class="pv"><svg class="i"><use href="#i-calc"/></svg><svg class="i ar"><use href="#i-arrow"/></svg><svg class="i"><use href="#i-layers"/></svg></span><svg class="ck" viewBox="0 0 24 24"><circle pathLength="1" cx="12" cy="12" r="10"/><path pathLength="1" d="M7.5 12.5l3 3 6-6"/></svg></div>
+    <div class="pil card c" style="--x:-25;--y:18"><em class="n">03</em><b>Đúng suy luận</b><small>25 phản ánh nước yếu → “có dấu hiệu tập trung”, chưa thể kết luận “vỡ ống”</small><span class="pv"><svg class="i"><use href="#i-search"/></svg><svg class="i ar"><use href="#i-arrow"/></svg><svg class="i warn"><use href="#i-alert"/></svg></span><svg class="ck" viewBox="0 0 24 24"><circle pathLength="1" cx="12" cy="12" r="10"/><path pathLength="1" d="M7.5 12.5l3 3 6-6"/></svg></div>
+    <div class="pil card c" style="--x:25;--y:18"><em class="n">04</em><b>Đúng quyền</b><small>AI không thấy nhiều dữ liệu hơn người sử dụng</small><span class="pv"><svg class="i"><use href="#i-user"/></svg><span class="eq">=</span><svg class="i"><use href="#i-layers"/></svg></span><svg class="ck" viewBox="0 0 24 24"><circle pathLength="1" cx="12" cy="12" r="10"/><path pathLength="1" d="M7.5 12.5l3 3 6-6"/></svg></div>
+    <ul class="badges">
+      <li><svg class="i"><use href="#i-db"/></svg>Golden dataset</li><li><svg class="i"><use href="#i-link"/></svg>Nguồn rõ ràng</li><li><svg class="i"><use href="#i-clip-check"/></svg>Audit</li><li><svg class="i"><use href="#i-lock"/></svg>Phân quyền</li><li class="gold"><svg class="i"><use href="#i-shield"/></svg>Human approval</li>
+    </ul>
+  </section>
+
+  <!-- 09 GIÁ TRỊ & KHÁC BIỆT -->
+  <section class="stage s-value" aria-label="Giá trị và điểm khác biệt">
+    <div class="head hA"><div class="kick">Giá trị</div><h2 class="h">Trợ lý số mang lại <em>giá trị</em> gì?</h2></div>
+    <div class="head hB"><div class="kick">Điểm khác biệt</div><h2 class="h"><em>WAO AI Agent Platform</em></h2><p class="lead">Tạo một AI Agent là chưa đủ</p></div>
+    <div class="val card c" style="--x:-29;--y:-9"><em class="n">01</em><div><b>Giảm thời gian tìm &amp; tổng hợp</b><small>Gom nhiều bước thành một luồng ngắn</small></div><span class="vi"><svg class="i"><use href="#i-clock"/></svg></span></div>
+    <div class="val card c" style="--x:29;--y:-9"><em class="n">02</em><div><b>Phát hiện vấn đề sớm hơn</b><small>Lặp lại · quá hạn · tiêu thụ bất thường</small></div><span class="vi gold"><svg class="i"><use href="#i-alert"/></svg></span></div>
+    <div class="val card c" style="--x:-29;--y:13"><em class="n">03</em><div><b>Hỗ trợ ra quyết định</b><small>Đối chiếu · bối cảnh · việc nên kiểm tra</small></div><span class="vi"><svg class="i"><use href="#i-target"/></svg></span></div>
+    <div class="val card c" style="--x:29;--y:13"><em class="n">04</em><div><b>Tự động hóa bước phù hợp</b><small>Bản nháp · nhắc việc · workflow đã duyệt</small></div><span class="vi"><svg class="i"><use href="#i-zap"/></svg></span></div>
+    <div class="vflow c"><span>Dữ liệu</span><i class="vf-l"><b></b></i><span>Trợ lý số</span><i class="vf-l"><b></b></i><span class="gold">Giá trị vận hành</span></div>
+    <p class="vwords">Không phải “có AI” — mà làm việc <em>nhanh hơn · chủ động hơn · có ngữ cảnh hơn</em></p>
+
+    <span class="feat c" style="--x:-13;--y:-17"><svg class="i"><use href="#i-flow"/></svg>Đúng nghiệp vụ</span>
+    <span class="feat c" style="--x:13;--y:-17"><svg class="i"><use href="#i-lock"/></svg>An toàn dữ liệu</span>
+    <span class="feat c" style="--x:-13;--y:17"><svg class="i"><use href="#i-users"/></svg>Dùng chung được</span>
+    <span class="feat c" style="--x:13;--y:17"><svg class="i"><use href="#i-shield"/></svg>Kiểm soát được</span>
+    <span class="bot c" style="--x:25.8;--y:-17.0;--h:200"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:20.5;--y:3.4;--h:260"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:31.2;--y:23.2;--h:170"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:19.8;--y:-2.0;--h:215"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:24.1;--y:4.2;--h:200"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:36.4;--y:-18.4;--h:170"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:32.3;--y:5.9;--h:200"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:31.1;--y:-4.0;--h:170"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:20.0;--y:20.5;--h:35"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:27.8;--y:3.7;--h:35"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:30.7;--y:11.1;--h:215"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:31.2;--y:8.9;--h:260"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:21.0;--y:12.7;--h:200"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:32.0;--y:1.3;--h:0"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:35.3;--y:-0.3;--h:140"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:26.6;--y:-11.8;--h:190"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:33.7;--y:-12.1;--h:35"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:30.0;--y:21.4;--h:140"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:25.0;--y:26.9;--h:215"><svg class="i"><use href="#i-bot"/></svg></span><span class="bot c" style="--x:29.8;--y:-16.3;--h:260"><svg class="i"><use href="#i-bot"/></svg></span>
+    <p class="bots-l c">20 người · 20 chatbot · <b>20 kiểu kết quả</b></p>
+    <div class="expert c"><span class="av big"><svg class="i"><use href="#i-laptop"/></svg></span><b>Chuyên gia nghiệp vụ</b></div>
+    <div class="std card c"><b>Chuẩn hóa một Agent</b><ul><li><svg class="i"><use href="#i-target"/></svg>Mục đích sử dụng<svg class="i ok"><use href="#i-check"/></svg></li><li><svg class="i"><use href="#i-db"/></svg>Nguồn dữ liệu được phép<svg class="i ok"><use href="#i-check"/></svg></li><li><svg class="i"><use href="#i-wrench"/></svg>Công cụ được dùng<svg class="i ok"><use href="#i-check"/></svg></li><li><svg class="i"><use href="#i-clipboard"/></svg>Quy tắc nghiệp vụ<svg class="i ok"><use href="#i-check"/></svg></li><li><svg class="i"><use href="#i-file"/></svg>Chuẩn trình bày đầu ra<svg class="i ok"><use href="#i-check"/></svg></li></ul></div>
+    <div class="once c"><span>1 lần chuẩn hóa</span></div>
+    <svg class="ov fan" aria-hidden="true">
+      <path pathLength="1" data-d="M57 50 C66 50 68 28 78 28"/>
+      <path pathLength="1" data-d="M57 50 C66 50 68 39 78 39"/>
+      <path pathLength="1" data-d="M57 50 L78 50"/>
+      <path pathLength="1" data-d="M57 50 C66 50 68 61 78 61"/>
+      <path pathLength="1" data-d="M57 50 C66 50 68 72 78 72"/>
+    </svg>
+    <span class="usr c" style="--x:31;--y:-22"><svg class="i"><use href="#i-user"/></svg><i><svg class="i"><use href="#i-chart"/></svg></i></span>
+    <span class="usr c" style="--x:31;--y:-11"><svg class="i"><use href="#i-user"/></svg><i><svg class="i"><use href="#i-file"/></svg></i></span>
+    <span class="usr c" style="--x:31;--y:0"><svg class="i"><use href="#i-user"/></svg><i><svg class="i"><use href="#i-cog"/></svg></i></span>
+    <span class="usr c" style="--x:31;--y:11"><svg class="i"><use href="#i-user"/></svg><i><svg class="i"><use href="#i-wrench"/></svg></i></span>
+    <span class="usr c" style="--x:31;--y:22"><svg class="i"><use href="#i-user"/></svg><i><svg class="i"><use href="#i-wallet"/></svg></i></span>
+    <span class="usr-l c">Cùng cách làm · <b>mỗi người đúng quyền</b></span>
+    <p class="tag">1 lần chuẩn hóa → <em>cả đơn vị cùng khai thác</em> · vẫn kiểm soát được</p>
+    <div class="ladder c"><ol><li class="">Tra cứu</li><li class="">Đối chiếu</li><li class="">Phân tích</li><li class="">Đề xuất</li><li class="gold">Workflow có kiểm soát</li></ol><span class="motto"><svg class="i"><use href="#i-shield"/></svg>AI chuẩn bị, con người phê duyệt</span></div>
+  </section>
+
+  <!-- 10 LỘ TRÌNH -->
+  <section class="stage s-road" aria-label="Lộ trình triển khai">
+    <div class="head hA"><div class="kick">Lộ trình</div><h2 class="h">Đừng bắt đầu bằng <em>“AI toàn công ty”</em></h2></div>
+    <div class="head hB"><div class="kick">Nguyên tắc</div><h2 class="h">Bắt đầu nhỏ · <em>Chứng minh giá trị</em> · Mở rộng an toàn</h2></div>
+    <svg class="ov road" aria-hidden="true">
+      <path class="rbase" data-d="M3 72 C18 76 22 58 34 60 S52 54 60 48 S80 36 97 26"/>
+      <path class="rdraw" pathLength="1" data-d="M3 72 C18 76 22 58 34 60 S52 54 60 48 S80 36 97 26"/>
+    </svg>
+    <span class="mk c"></span><span class="mk c"></span><span class="mk c"></span><span class="mk c"></span>
+    <div class="ms card c"><em class="n">01</em><b>Chọn một bài toán thật</b><small>Hẹp nhưng thật · có dữ liệu · có người dùng</small><svg class="i big"><use href="#i-target"/></svg></div>
+    <div class="ms card c"><em class="n">02</em><b>Cho trợ lý “đọc” trước</b><small><strong>READ-ONLY</strong> · đọc và phân tích</small><svg class="i big"><use href="#i-eye"/></svg></div>
+    <div class="ms card c"><em class="n">03</em><b>Đo đúng / sai</b><small>Golden dataset · feedback · audit</small><svg class="i big"><use href="#i-clip-check"/></svg></div>
+    <div class="ms card c"><em class="n">04</em><b>Mở rộng từng bước</b><small>Dữ liệu → Công cụ → Workflow → <strong class="g">Action</strong></small><svg class="i big"><use href="#i-layers"/></svg></div>
+    <div class="levels c">
+      <div class="lvl"><svg class="i"><use href="#i-repeat"/></svg><div><b>Tự động hoàn toàn</b><small>Việc an toàn: tra cứu · tổng hợp · nhắc việc</small></div></div>
+      <div class="lvl mid"><svg class="i"><use href="#i-flow"/></svg><div><b>Tự động có phê duyệt</b><small>Ảnh hưởng workflow: tạo nhiệm vụ · thông báo</small></div></div>
+      <div class="lvl hi"><svg class="i"><use href="#i-shield"/></svg><div><b>Con người quyết định</b><small>Tài chính · đóng/mở nước · kỹ thuật · SCADA</small></div></div>
+    </div>
+  </section>
+
+  <!-- 11 TẦM NHÌN -->
+  <section class="stage s-end" aria-label="Tầm nhìn">
+    <div class="head center"><div class="kick">Tầm nhìn</div><h2 class="h">Không thay thế người làm cấp nước — <em>mỗi AI Agent là một trợ lý chuyên môn</em></h2></div>
+    <div class="head center h3c"><div class="kick">WAO AI Agent Platform</div><h2 class="h">Trợ lý số theo từng nghiệp vụ — kết nối qua <em>Dữ liệu · API · MCP</em></h2></div>
+    <div class="eco"><span class="ea c"><svg class="i"><use href="#i-trend"/></svg>Điều hành</span><span class="ea c"><svg class="i"><use href="#i-wrench"/></svg>Kỹ thuật</span><span class="ea c"><svg class="i"><use href="#i-chart"/></svg>Tài chính</span><span class="ea c"><svg class="i"><use href="#i-store"/></svg>Nguồn lực</span><span class="ea c"><svg class="i"><use href="#i-monitor"/></svg>CNTT</span><span class="ea c"><svg class="i"><use href="#i-search"/></svg>KTKS</span><span class="ea c"><svg class="i"><use href="#i-users"/></svg>Kinh doanh</span><span class="ea c"><svg class="i"><use href="#i-file"/></svg>Hành chính</span></div>
+    <div class="eq-line c"><span>1 AI Agent = 1 trợ lý chuyên môn</span><b>+</b><span>Nhiều trợ lý = <em>hệ sinh thái nhân sự số</em></span></div>
+    <p class="fl c" style="--y:-2">Chuyển đổi số giúp doanh nghiệp <b>có dữ liệu</b></p>
+    <p class="fl c" style="--y:8">Trợ lý số giúp con người <b>khai thác dữ liệu</b></p>
+    <p class="fl c" style="--y:18">Nhiều trợ lý số → <b>một lớp năng lực mới</b> cho ngành cấp nước</p>
+    <p class="f2 c">AI không phải đích đến.<br><em>Đích đến là vận hành tốt hơn, phục vụ khách hàng tốt hơn.</em></p>
+    <p class="f3 c">Cảm ơn quý vị đã lắng nghe</p>
+  </section>
+</main>
+
+<!-- ================= SHARED CORE (liên kết xuyên suốt các cảnh) ================= -->
+<div id="core" class="c" aria-hidden="true">
+  <svg viewBox="0 0 400 420">
+    <defs>
+      <radialGradient id="g-halo"><stop offset="0" stop-color="#92DFFF" stop-opacity=".55"/><stop offset="1" stop-color="#92DFFF" stop-opacity="0"/></radialGradient>
+      <radialGradient id="g-base"><stop offset="0" stop-color="#7FD4FF" stop-opacity=".9"/><stop offset=".6" stop-color="#2E8BEA" stop-opacity=".25"/><stop offset="1" stop-color="#2E8BEA" stop-opacity="0"/></radialGradient>
+      <linearGradient id="g-t1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#CFE7FF"/></linearGradient>
+      <linearGradient id="g-t2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#BFE3FF"/><stop offset="1" stop-color="#5EA8F2"/></linearGradient>
+      <linearGradient id="g-t3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5BA6F2"/><stop offset="1" stop-color="#1558B8"/></linearGradient>
+      <linearGradient id="g-l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8CC8FA"/><stop offset="1" stop-color="#3D88E4"/></linearGradient>
+      <linearGradient id="g-r" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4C97EC"/><stop offset="1" stop-color="#1A5FC4"/></linearGradient>
+      <linearGradient id="g-drop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D4F5FF"/><stop offset=".45" stop-color="#5BC0F8"/><stop offset="1" stop-color="#1558B8"/></linearGradient>
+      <linearGradient id="g-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD979"/><stop offset="1" stop-color="#F0A21E"/></linearGradient>
+    </defs>
+    <circle class="halo" cx="200" cy="215" r="200" fill="url(#g-halo)"/>
+    <g class="rings">
+      <ellipse cx="200" cy="330" rx="185" ry="56" fill="url(#g-base)"/>
+      <ellipse cx="200" cy="330" rx="170" ry="48" fill="none" stroke="#92DFFF" stroke-width="2.5" opacity=".9"/>
+      <ellipse cx="200" cy="330" rx="128" ry="36" fill="none" stroke="#5BB8F5" stroke-width="2" opacity=".8"/>
+      <ellipse class="ripple" cx="200" cy="330" rx="128" ry="36" fill="none" stroke="#92DFFF" stroke-width="3"/>
+    </g>
+    <g class="sl sl3">
+      <path d="M80 280 L200 340 L200 364 L80 304Z" fill="url(#g-l)"/><path d="M200 340 L320 280 L320 304 L200 364Z" fill="url(#g-r)"/>
+      <path d="M200 220 L320 280 L200 340 L80 280Z" fill="url(#g-t3)" stroke="#BEE6FF" stroke-width="2" stroke-linejoin="round"/>
+    </g>
+    <g class="sl sl2">
+      <path d="M80 230 L200 290 L200 314 L80 254Z" fill="url(#g-l)"/><path d="M200 290 L320 230 L320 254 L200 314Z" fill="url(#g-r)"/>
+      <path d="M200 170 L320 230 L200 290 L80 230Z" fill="url(#g-t2)" stroke="#E4F4FF" stroke-width="2" stroke-linejoin="round"/>
+    </g>
+    <g class="sl sl1">
+      <path d="M80 180 L200 240 L200 264 L80 204Z" fill="url(#g-l)"/><path d="M200 240 L320 180 L320 204 L200 264Z" fill="url(#g-r)"/>
+      <path d="M200 120 L320 180 L200 240 L80 180Z" fill="url(#g-t1)" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M200 146 L268 180 L200 214 L132 180Z" fill="#E6F3FF" stroke="#A9D6FF" stroke-width="1.5"/>
+      <ellipse cx="200" cy="180" rx="34" ry="13" fill="#fff" opacity=".9"/>
+    </g>
+    <g class="drop"><g class="drop-f">
+      <path d="M200 22 C200 22 150 82 150 116 A50 50 0 0 0 250 116 C250 82 200 22 200 22Z" fill="url(#g-drop)" stroke="#fff" stroke-width="2.5" stroke-opacity=".85"/>
+      <path d="M178 96 C172 108 172 124 182 136" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".75"/>
+    </g></g>
+    <g class="badge">
+      <circle cx="318" cy="96" r="34" fill="url(#g-gold)" stroke="#fff" stroke-width="4"/>
+      <path d="M302 97 l11 11 20-21" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </svg>
+</div>
+
+<!-- ================= SCROLL SPACERS ================= -->
+<div id="scroller" aria-hidden="true">
+  <div class="scene" data-title="Mở đầu" data-beats="2"></div>
+  <div class="scene" data-title="Thực trạng" data-beats="3"></div>
+  <div class="scene" data-title="Trợ lý số là gì?" data-beats="4"></div>
+  <div class="scene" data-title="Mỗi phòng ban" data-beats="3"></div>
+  <div class="scene" data-title="Chuỗi công việc" data-beats="4"></div>
+  <div class="scene" data-title="Case KTKS" data-beats="4"></div>
+  <div class="scene" data-title="Kiến trúc" data-beats="3"></div>
+  <div class="scene" data-title="Tin tưởng" data-beats="6"></div>
+  <div class="scene" data-title="Giá trị & khác biệt" data-beats="11"></div>
+  <div class="scene" data-title="Lộ trình" data-beats="6"></div>
+  <div class="scene" data-title="Tầm nhìn" data-beats="5"></div>
+  <div id="scroll-end"></div>
+</div>
+
+<!-- ================= UI ================= -->
+<div id="progress" aria-hidden="true"><i></i></div>
+<div id="brand">WAO <span>AI Agent Platform</span></div>
+<nav id="dots" aria-label="Điều hướng cảnh"></nav>
+<div id="hud" aria-live="polite"><b id="hud-n">01</b><span>/ 11</span><em id="hud-t">Mở đầu</em></div>
+<div id="keys"><kbd>←</kbd><kbd>→</kbd> chuyển · <kbd>F</kbd> toàn màn hình · <kbd>N</kbd> ghi chú · <kbd>L</kbd> chế độ nhẹ</div>
+<aside id="notes" hidden><h3>Ghi chú người nói</h3><div id="notes-body"></div></aside>
+<div id="toast" role="status"></div>
+
+<script src="assets/js/engine.js?v=9"></script>
+<script src="assets/js/core.js?v=9"></script>
+<script src="assets/js/scenes/01-hero.js?v=9"></script>
+<script src="assets/js/scenes/02-problem.js?v=9"></script>
+<script src="assets/js/scenes/03-agent.js?v=9"></script>
+<script src="assets/js/scenes/04-departments.js?v=9"></script>
+<script src="assets/js/scenes/05-chain.js?v=9"></script>
+<script src="assets/js/scenes/06-ktks.js?v=9"></script>
+<script src="assets/js/scenes/07-architecture.js?v=9"></script>
+<script src="assets/js/scenes/08-trust.js?v=9"></script>
+<script src="assets/js/scenes/09-value.js?v=9"></script>
+<script src="assets/js/scenes/10-roadmap.js?v=9"></script>
+<script src="assets/js/scenes/11-closing.js?v=9"></script>
+<script src="assets/js/notes.js?v=9"></script>
+<script src="assets/js/main.js?v=9"></script>
+</body>
+</html>

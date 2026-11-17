@@ -1,0 +1,76 @@
+/* Ghi chú người nói (phím N): mỗi cảnh là danh sách lời nói theo từng ý, mỗi lần bấm → là một ý. Lấy từ phần ghi chú của pptx gốc. */
+window.NOTES = [
+  [
+    'Kính thưa quý lãnh đạo và các anh chị đồng nghiệp. Nhiều năm qua chúng ta đã đầu tư rất nhiều cho chuyển đổi số: số hóa quy trình, ứng dụng, GIS, dữ liệu khách hàng, ghi chỉ số, hóa đơn, công nợ, kỹ thuật… Doanh nghiệp ngày càng có nhiều dữ liệu hơn.',
+    'Câu hỏi hôm nay: khi đã có nhiều hệ thống và dữ liệu, bước tiếp theo là gì? Một hướng đáng quan tâm là các Trợ lý số – AI Agent chuyên môn. Chuyển đổi số giúp có dữ liệu; Trợ lý số biến dữ liệu thành năng lực làm việc mới.',
+  ],
+  [
+    'Dữ liệu ngày càng nhiều nhưng nằm trong nhiều hệ thống khác nhau: khách hàng, đồng hồ, ghi chỉ số, hóa đơn, công nợ, khiếu nại, GIS, kỹ thuật, vật tư, tài chính.',
+    'Để trả lời “hôm nay có gì cần chú ý?”, nhân viên phải mở nhiều phần mềm, lọc dữ liệu, xuất Excel, tổng hợp rồi mới phân tích.',
+    'Bài toán tiếp theo không chỉ là có dữ liệu, mà là khai thác nhanh hơn, đúng ngữ cảnh hơn và giảm thao tác thủ công để nối các mảnh thông tin.',
+  ],
+  [
+    'Làm rõ khái niệm. Chatbot: hỏi và nhận một câu trả lời.',
+    'AI Assistant tiến thêm một bước: đưa tài liệu và nhờ tóm tắt, hỗ trợ một việc cụ thể.',
+    'Trợ lý số / AI Agent: giao một mục tiêu, ví dụ “Phân tích phản ánh nước yếu tháng này và cho tôi biết khu vực nào cần chú ý.” Nó tự tìm dữ liệu, lọc thời gian, đối chiếu nhiều nguồn, phân tích, tổng hợp và đề xuất.',
+    'Agent không có nghĩa là AI được tự do làm mọi thứ. Nó chỉ hoạt động trong phạm vi dữ liệu, công cụ và quyền hạn doanh nghiệp cấp cho nó.',
+  ],
+  [
+    'Thay vì xây một AI biết tất cả…',
+    '…mỗi phòng ban có một Trợ lý số chuyên môn: Điều hành, Văn phòng, Khách hàng, Phân tích khiếu nại, Hiện trường, Phân tích tài chính, Nguồn lực, Hệ thống.',
+    'Tất cả dùng chung một nền tảng, nhưng mỗi trợ lý chỉ thấy đúng dữ liệu, dùng đúng công cụ của vai trò mình. Dễ triển khai, dễ kiểm soát. Mục tiêu: đúng trợ lý cho đúng công việc.',
+  ],
+  [
+    'Trợ lý số khác gì công cụ hỏi đáp thông minh? Nó có thể tham gia vào cả một chuỗi công việc.',
+    'Ví dụ 1: sáng nay nhiều khách hàng phản ánh nước yếu ở một khu vực. Trợ lý lấy phản ánh từ KTKS/CSKH, đưa lên GIS, kiểm tra dữ liệu vận hành, đối chiếu sự cố/công tác, xác định nhóm khách hàng bị ảnh hưởng, chuẩn bị đề xuất kiểm tra hiện trường để người phụ trách duyệt.',
+    'Ví dụ 2: hóa đơn tăng bất thường. Trợ lý lấy danh bộ, chỉ số, ảnh đồng hồ, lịch sử tiêu thụ, hóa đơn, lịch sử thay đồng hồ và khiếu nại trước để có bức tranh đầy đủ, rồi dự thảo phản hồi hoặc đề xuất kiểm tra.',
+    'AI không tự kết luận khi chưa đủ bằng chứng, không tự thực hiện hành động nhạy cảm. Nó chuẩn bị công việc; con người kiểm tra và quyết định.',
+  ],
+  [
+    'Case đang thử nghiệm: Trợ lý số KTKS – Complaint Intelligence Agent. Hiện khiếu nại được quản lý theo từng hồ sơ: ai phản ánh, nội dung gì, trạng thái, ai xử lý, kết quả.',
+    'Với Agent, người dùng có thể hỏi: tháng này có vấn đề gì? Khách hàng nào phản ánh lặp lại? Loại khiếu nại nào đang tăng? Hồ sơ nào quá hạn?',
+    'Agent dùng các công cụ được định nghĩa để tra cứu, tổng hợp, tìm lặp, tìm quá hạn và phân tích xu hướng.',
+    'Khi mở rộng thêm Danh bộ, tiêu thụ, GIS, sự cố, dữ liệu khiếu nại trở thành nguồn intelligence. Đây là case để chứng minh giá trị trước khi nhân rộng.',
+  ],
+  [
+    'Triển khai Trợ lý số không phải thay hệ thống đang có. Danh bộ vẫn là Danh bộ, KTKS, GIS, Billing vẫn như cũ — đó là System of Record.',
+    'Phía trên bổ sung lớp Trợ lý số — System of Intelligence: hiểu yêu cầu, gọi đúng công cụ qua API hoặc MCP, tổng hợp và phân tích.',
+    'Lớp này không sở hữu dữ liệu và không được bypass quyền. Tận dụng đầu tư hiện có, giảm rủi ro.',
+  ],
+  [
+    'Câu hỏi quan trọng nhất không phải “AI thông minh đến đâu?” mà là “làm sao biết nó đúng?”. Chúng tôi chia thành bốn lớp.',
+    'Thứ nhất, đúng dữ liệu: hồ sơ, trạng thái, ngày tháng phải khớp hệ thống nguồn.',
+    'Thứ hai, đúng số liệu: tổng, đếm, tỷ lệ do backend hoặc MCP tính, không để mô hình ngôn ngữ tự đếm.',
+    'Thứ ba, đúng suy luận: correlation chưa phải nguyên nhân. Nhiều phản ánh nước yếu cùng khu vực → “có dấu hiệu tập trung”, chưa thể kết luận “vỡ ống”.',
+    'Thứ tư, đúng quyền: AI không được thấy nhiều dữ liệu hơn người sử dụng.',
+    'Vì vậy cần Golden Dataset, nguồn rõ ràng, audit, phân quyền và human approval. Agent doanh nghiệp phải kiểm chứng được, không chỉ “nghe có vẻ đúng”.',
+  ],
+  [
+    'Cuối cùng, câu hỏi quan trọng nhất: Trợ lý số mang lại giá trị gì cho công việc hằng ngày?',
+    'Thứ nhất, giảm thời gian tìm và tổng hợp: gom nhiều bước tra cứu, lọc, xuất, ghép thành một luồng ngắn.',
+    'Thứ hai, phát hiện vấn đề sớm hơn: khiếu nại lặp lại, hồ sơ quá hạn, tiêu thụ bất thường, khu vực nhiều phản ánh.',
+    'Thứ ba, hỗ trợ ra quyết định: AI không thay người quản lý, nhưng đối chiếu, tổng hợp bối cảnh, chỉ ra điểm cần chú ý.',
+    'Thứ tư, tự động hóa bước phù hợp: bản nháp, nhắc việc, chuẩn bị nhiệm vụ, báo cáo, workflow sau phê duyệt.',
+    'Giá trị không nằm ở “có AI”, mà ở việc giúp con người làm việc nhanh hơn, chủ động hơn, có ngữ cảnh hơn. AI trở thành một phần cách doanh nghiệp vận hành.',
+    'Nhưng chỉ “tạo được một AI Agent” là chưa đủ: phải đúng nghiệp vụ, an toàn dữ liệu, dùng chung được và kiểm soát được — hướng của WAO AI Agent Platform.',
+    'Nếu 20 người mỗi người tự tạo một chatbot: 20 cách hỏi, 20 cách hiểu nghiệp vụ, 20 cách phân tích, 20 kiểu kết quả.',
+    'Ngược lại: người có kinh nghiệm nghiệp vụ chuẩn hóa một Agent — mục đích, nguồn dữ liệu, công cụ, quy tắc nghiệp vụ, chuẩn đầu ra.',
+    'Nhiều nhân sự dùng chung Agent đó: chung cách làm, nhưng không chung quyền dữ liệu — mỗi người chỉ thấy những gì mình được phép.',
+    'Agent kết nối hệ thống hiện có qua API/MCP, tiến dần: tra cứu → đối chiếu → phân tích → đề xuất → workflow có kiểm soát. Nguyên tắc: AI chuẩn bị, con người phê duyệt.',
+  ],
+  [
+    'Cách dễ thất bại nhất là bắt đầu bằng “xây AI cho toàn Công ty”.',
+    'Chọn một bài toán hẹp nhưng thật: có dữ liệu, có người dùng, có giá trị.',
+    'Giai đoạn đầu cho Trợ lý số đọc và phân tích trước — read-only.',
+    'Xây Golden Dataset để đo đúng – sai, lấy feedback người dùng, audit toàn bộ quá trình.',
+    'Chứng minh được giá trị mới mở rộng: thêm dữ liệu, công cụ, workflow, cuối cùng mới xem xét action.',
+    'Ba mức tự động hóa: việc an toàn tự động hoàn toàn; việc ảnh hưởng workflow thì có phê duyệt; tài chính, đóng mở nước, kết luận kỹ thuật, SCADA thuộc về con người. Bắt đầu nhỏ, chứng minh giá trị, mở rộng an toàn.',
+  ],
+  [
+    'Điều muốn chia sẻ không phải AI thay thế người làm cấp nước. Mỗi AI Agent là một trợ lý số chuyên môn cho một vai trò cụ thể.',
+    'Nhiều trợ lý số — Hành chính, Kinh doanh, KTKS, Kỹ thuật, Tài chính, CNTT — trên một nền tảng chung dữ liệu, công cụ, phân quyền, audit → hệ sinh thái nhân sự số.',
+    'WAO đang phát triển nền tảng theo hướng đó: tạo trợ lý số theo từng nghiệp vụ cấp nước, kết nối hệ thống hiện hữu qua dữ liệu, API và MCP.',
+    'Chuyển đổi số giúp có dữ liệu; Trợ lý số giúp khai thác dữ liệu; nhiều trợ lý số hình thành một lớp năng lực mới cho doanh nghiệp cấp nước.',
+    'AI không phải đích đến. Đích đến vẫn là vận hành tốt hơn và phục vụ khách hàng tốt hơn. Xin cảm ơn.',
+  ],
+];
