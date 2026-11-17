@@ -39,6 +39,19 @@ window.NOTES = [
     'Điểm quan trọng: AI không ký, không phát hành và không quyết định thay con người. AI chuẩn bị công việc để con người xử lý nhanh và nhất quán hơn.',
   ],
   [
+    'Với dịch vụ khách hàng, một ví dụ rất thực tế là khai thác Danh bộ tập trung. Khi khách hàng gọi đến hỏi vì sao hóa đơn tăng, nhân viên không chỉ cần biết thông tin danh bộ.',
+    'Họ còn cần nhìn lịch sử đồng hồ, tiêu thụ, hóa đơn, công nợ và các phản ánh trước đây.',
+    'Trợ lý số có thể giúp tổng hợp toàn bộ ngữ cảnh đó thành một góc nhìn Customer 360.',
+    'Nhân viên không phải mất thời gian tra cứu từng phần, mà có thể tập trung vào việc hiểu vấn đề và phục vụ khách hàng tốt hơn.',
+  ],
+  [
+    'Với lãnh đạo, câu hỏi thường không phải là “cho tôi xem thêm một báo cáo”, mà là: Hôm nay có gì cần chú ý?',
+    'Trợ lý Điều hành có thể tổng hợp thông tin từ kinh doanh, KTKS, kỹ thuật, tài chính hay nhiệm vụ để chỉ ra những vấn đề bất thường, việc đang chậm hoặc xu hướng cần theo dõi.',
+    'Quan trọng hơn, lãnh đạo có thể hỏi tiếp để đi sâu vào nguyên nhân, dữ liệu cơ sở và nguồn thông tin.',
+    'AI không quyết định thay lãnh đạo.',
+    'AI giúp rút ngắn quá trình từ rất nhiều dữ liệu và báo cáo thành những vấn đề thực sự cần được quan tâm.',
+  ],
+  [
     'Triển khai Trợ lý số không phải thay hệ thống đang có. Danh bộ vẫn là Danh bộ, KTKS, GIS, Billing vẫn như cũ — đó là System of Record.',
     'Phía trên bổ sung lớp Trợ lý số — System of Intelligence: hiểu yêu cầu, gọi đúng công cụ qua API hoặc MCP, tổng hợp và phân tích.',
     'Lớp này không sở hữu dữ liệu và không được bypass quyền. Tận dụng đầu tư hiện có, giảm rủi ro.',

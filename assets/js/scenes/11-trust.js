@@ -1,6 +1,6 @@
 /* 08 · Tin tưởng — 6 ý
  * ý 1: làm sao biết nó đúng? · ý 2–5: 4 lớp đúng (dữ liệu, số liệu, suy luận, quyền) · ý 6: cơ chế kiểm chứng */
-E.def(8, (S) => {
+E.def(10, (S) => {
   const { t, $$ } = S, b = S.beat;
   const num = (el, v) => parseFloat(getComputedStyle(el).getPropertyValue(v)) || 0;
 

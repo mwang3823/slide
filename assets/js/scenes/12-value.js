@@ -1,7 +1,7 @@
 /* 10 · Giá trị (ý 1–6) → Khác biệt WAO (ý 7–11)
  * 1 câu hỏi giá trị · 2–5 bốn giá trị · 6 "không phải có AI"
  * 7 nhiều nền tảng đã tạo được Agent · 8 WAO bắt đầu từ nghiệp vụ cấp nước · 9 kinh nghiệm dùng chung · 10 kiểm chứng được là đúng · 11 đóng gói thành Trợ lý số */
-E.def(9, (S) => {
+E.def(11, (S) => {
   const { t, $$ } = S, b = S.beat;
   const num = (el, v) => parseFloat(getComputedStyle(el).getPropertyValue(v)) || 0;
   const end = (sel) => t(sel, [[0.945, { o: 1 }], [1.03, { o: 0 }]]);
