@@ -16,10 +16,18 @@ Mở thẳng `index.html` (file://) cũng chạy được: không có ES module,
 | `←` `↑` `PageUp` · click chuột phải | Bước trước |
 | `1`–`9`, `Home`, `End` | Nhảy tới cảnh |
 | `F` | Toàn màn hình |
+| `P` | Mở màn người nói |
 | `N` · nút 💬 | Nội dung nói của lần bấm hiện tại |
 
 Cụm nút ◀ ▶ 💬 ⛶ ở góc phải dưới mờ 15%, rê chuột vào thì rõ. Mỗi lần bấm chạy trọn phần nội dung tới điểm dừng kế tiếp (`data-pause` trong `index.html`).
 | `L` | Bật/tắt chế độ nhẹ (máy yếu) · hoặc thêm `?lite=1` vào URL |
+
+## Màn người nói (2 màn hình)
+1. Mở `index.html`, bấm `P` (hoặc nút 💻 trong cụm nút góc phải) → mở cửa sổ `presenter.html`.
+2. Kéo cửa sổ trình chiếu sang máy chiếu, bấm `F` để toàn màn hình. Màn người nói để lại trên laptop.
+3. Bấm ←/→ ở cửa sổ nào cũng được, hai cửa sổ luôn đồng bộ (BroadcastChannel, cần chạy qua http/GitHub Pages).
+
+Màn người nói gồm: xem trước slide đang chiếu (chạy animation thật), phần tiếp theo, đồng hồ 15 phút, danh sách slide, toàn bộ lời nói của slide.
 
 ## Deploy GitHub Pages
 Push lên GitHub, vào **Settings → Pages**, chọn *Deploy from branch*, nhánh `main`, thư mục `/ (root)`.
